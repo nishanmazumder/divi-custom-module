@@ -1,3 +1,3 @@
-import HelloWorld from './HelloWorld/HelloWorld';
+import TextBlock from './TextBlock/TextBlock';
 
-export default [HelloWorld];
+export default [TextBlock];

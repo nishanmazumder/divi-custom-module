@@ -1,8 +1,8 @@
 <?php
 
-class NMDIVI_HelloWorld extends ET_Builder_Module {
+class NM_TEXT_BLOCK extends ET_Builder_Module {
 
-	public $slug       = 'nmdivi_hello_world';
+	public $slug       = 'nm_divi_text_block';
 	public $vb_support = 'on';
 
 	protected $module_credits = array(
@@ -12,11 +12,18 @@ class NMDIVI_HelloWorld extends ET_Builder_Module {
 	);
 
 	public function init() {
-		$this->name = esc_html__( 'Hello World', 'nmdivi-divi-custom-mod' );
+		$this->name = esc_html__( 'NM-Text-Block', 'nmdivi-divi-custom-mod' );
 	}
 
 	public function get_fields() {
 		return array(
+			'nm_title' => array(
+				'label'           => esc_html__( 'Title', 'nmdivi-divi-custom-mod' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'description'     => esc_html__( 'Content entered here will appear inside the module.', 'nmdivi-divi-custom-mod' ),
+				'toggle_slug'     => 'main_content',
+			),
 			'content' => array(
 				'label'           => esc_html__( 'Content', 'nmdivi-divi-custom-mod' ),
 				'type'            => 'tiny_mce',
@@ -28,8 +35,11 @@ class NMDIVI_HelloWorld extends ET_Builder_Module {
 	}
 
 	public function render( $attrs, $content = null, $render_slug ) {
-		return sprintf( '<h1>%1$s</h1>', $this->props['content'] );
+		$title = sprintf( '<h1>%1$s</h1>', $this->props['nm_title'] );
+		$content = sprintf( '<p>%1$s</p>', $this->props['content'] );
+
+		return $title.$content;
 	}
 }
 
-new NMDIVI_HelloWorld;
+new NM_TEXT_BLOCK;

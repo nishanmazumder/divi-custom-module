@@ -14,7 +14,7 @@ class NM_BLURB extends ET_Builder_Module
 
 	public function init()
 	{
-		$this->name = esc_html__('NM-Blurb', 'nmdivi-divi-custom-mod');
+		$this->name = esc_html__('NM-Blurb', 'nm_divi');
 
 		// icon
 		$this->icon = "Icon";
@@ -23,19 +23,19 @@ class NM_BLURB extends ET_Builder_Module
 		$this->settings_modal_toggles = [
 			'general' => [
 				'toggles' => [
-					'title' => esc_html__('Title', 'nmdivi-divi-custom-mod'),
-					'content' => esc_html__('Content', 'nmdivi-divi-custom-mod'),
-					'image' => esc_html__('Image', 'nmdivi-divi-custom-mod'),
-					'button' => esc_html__('Button', 'nmdivi-divi-custom-mod')
+					'nm_title' => esc_html__('Title', 'nm_divi'),
+					'nm_content' => esc_html__('Content', 'nm_divi'),
+					'nm_img' => esc_html__('Image', 'nm_divi'),
+					'nm_button' => esc_html__('Button', 'nm_divi')
 				]
 			],
 
 			'advanced' => [
 				'toggles' => [
-					'title' => esc_html__('Title', 'nmdivi-divi-custom-mod'),
-					'content' => esc_html__('Content', 'nmdivi-divi-custom-mod'),
-					'image' => esc_html__('Image', 'nmdivi-divi-custom-mod'),
-					'button' => esc_html__('Button', 'nmdivi-divi-custom-mod')
+					'nm_title' => esc_html__('Title', 'nm_divi'),
+					'nm_content' => esc_html__('Content', 'nm_divi'),
+					'nm_image' => esc_html__('Image', 'nm_divi'),
+					'nm_button' => esc_html__('Button', 'nm_divi')
 				]
 			]
 		];
@@ -45,10 +45,14 @@ class NM_BLURB extends ET_Builder_Module
 	{
 		$advanced_fields = array();
 
+		$advanced_fields['text'] = false;
+
 		$advanced_fields['fonts'] = array(
-			'title'   => array(
-				'label'         => esc_html__('Title', 'nmdivi-divi-custom-mod'),
-				'toggle_slug'   => 'title',
+
+			// Title
+			'nm_title'   => array(
+				'label'         => esc_html__('Title', 'nm_divi'),
+				'toggle_slug'   => 'nm_title',
 				'tab_slug'        => 'advanced',
 				'line_height' => array(
 					'default' => '1em',
@@ -70,23 +74,98 @@ class NM_BLURB extends ET_Builder_Module
 				),
 			),
 
-			'content'   => array(
-                'label'         => esc_html__('Content', 'divi_flash'),
-                'toggle_slug'   => 'content',
-                'sub_toggle'  => 'body',
-                'line_height' => array(
-                    'default' => '1em',
-                ),
-                'font_size' => array(
-                    'default' => '14px',
-                ),
-                'css'      => array(
-                    'main' => "%%order_class%% .featured-box-text",
-                    'hover' => "%%order_class%% .featured-box-text",
-                    'important' => 'all',
-                ),
-            ),
+			// Content
+			'nm_content'   => array(
+				'label'         => esc_html__('Content', 'nm_divi'),
+				'toggle_slug'   => 'nm_content',
+				'sub_toggle'  => 'body',
+				'line_height' => array(
+					'default' => '1em',
+				),
+				'font_size' => array(
+					'default' => '14px',
+				),
+				'css'      => array(
+					'main' => "%%order_class%% .featured-box-text",
+					'hover' => "%%order_class%% .featured-box-text:hover",
+					'important' => 'all',
+				),
+			),
+
+			// button
+			'nm_button'   => array(
+				'label'         => esc_html__('Button', 'nm_divi'),
+				'toggle_slug'   => 'nm_button',
+				'tab_slug'        => 'advanced',
+				'line_height' => array(
+					'default' => '1em',
+				),
+				'font_size' => array(
+					'default' => '18px',
+				),
+				'css'      => array(
+					'main' => "%%order_class%% .featured-box-readmore",
+					'alignment'   => "%%order_class%% .featured-box-button",
+					'hover' => "%%order_class%% .featured-box-readmore:hover",
+					'important' => 'all',
+				)
+			),
 		);
+
+		$advanced_fields['button']['nm_button'] = array(
+			'label'          => esc_html__( 'Button', 'addons-for-divi' ),
+			'css'            => array(
+				'main'      => '%%order_class%% .featured-box-readmore',
+				'alignment' => '%%order_class%% .featured-box-button',
+				'important' => 'all',
+			),
+			'use_alignment'  => true,
+			'box_shadow'     => array(
+				'css' => array(
+					'main' => '%%order_class%% .featured-box-readmore',
+				),
+			),
+			'borders'        => array(
+				'css' => array(
+					'important' => 'all',
+				),
+			),
+			'margin_padding' => array(
+				'css' => array(
+					'important' => 'all',
+				),
+			),
+		);
+
+		// $advanced_fields['background'] = array(
+		// 	'nm_button' => array(
+		// 		'label'         => esc_html__('Button Background', 'nm_divi'),
+		// 		'toggle_slug'   => 'nm_button',
+		// 		'tab_slug'        => 'advanced',
+		// 		'css'      => array(
+		// 			'main' => "%%order_class%% .featured-box-readmore",
+		// 			'hover' => "%%order_class%% .featured-box-readmore:hover",
+		// 			'important' => 'all',
+		// 		),
+		// 	)
+		// );
+
+		$advanced_fields['margin_padding'] = array(
+		    'css'   => array(
+		        'important' => 'all'
+		    )
+		);
+
+		// $advanced_fields['image'] = array(
+		// 	'label'         => esc_html__('Image', 'nm_divi'),
+		// 	'toggle_slug'   => 'nm_image',
+		// 	'tab_slug'        => 'advanced',
+		// 	'css' => array(
+		// 		'main' => array(
+		// 			'%%order_class%% image-mask img',
+		// 		)
+		// 	),
+		// );
 
 		return $advanced_fields;
 	}
@@ -97,103 +176,123 @@ class NM_BLURB extends ET_Builder_Module
 	{
 		return array(
 			'nm_title' => array(
-				'label'           => esc_html__('Title', 'nmdivi-divi-custom-mod'),
+				'label'           => esc_html__('Title', 'nm_divi'),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nmdivi-divi-custom-mod'),
-				'toggle_slug'     => 'content',
+				'description'     => esc_html__('', 'nm_divi'),
+				'toggle_slug'     => 'nm_title',
 			),
 			'nm_content' => array(
-				'label'           => esc_html__('Content', 'nmdivi-divi-custom-mod'),
+				'label'           => esc_html__('Content', 'nm_divi'),
 				'type'            => 'tiny_mce',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nmdivi-divi-custom-mod'),
-				'toggle_slug'     => 'content',
+				'description'     => esc_html__('', 'nm_divi'),
+				'toggle_slug'     => 'nm_content',
 			),
 			'nm_img' => array(
-				'label'           => esc_html__('Image', 'nmdivi-divi-custom-mod'),
+				'label'           => esc_html__('Image', 'nm_divi'),
 				'type'            => 'upload',
-				'upload_button_text' => esc_attr__('Upload an image', 'et_builder'),
-				'choose_text'        => esc_attr__('Choose an Image', 'et_builder'),
-				'update_text'        => esc_attr__('Set As Image', 'et_builder'),
+				'upload_button_text' => esc_attr__('Upload an image', 'nm_divi'),
+				'choose_text'        => esc_attr__('Choose an Image', 'nm_divi'),
+				'update_text'        => esc_attr__('Set As Image', 'nm_divi'),
 				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nmdivi-divi-custom-mod'),
-				'toggle_slug'     => 'image',
+				'description'     => esc_html__('', 'nm_divi'),
+				'toggle_slug'     => 'nm_img',
 			),
 			'nm_btn' => array(
-				'label'           => esc_html__('Button Label', 'nmdivi-divi-custom-mod'),
+				'label'           => esc_html__('Button Label', 'nm_divi'),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nmdivi-divi-custom-mod'),
-				'toggle_slug'     => 'button',
+				'description'     => esc_html__('', 'nm_divi'),
+				'toggle_slug'     => 'nm_btn',
 			),
 			'nm_btn_url' => array(
-				'label'           => esc_html__('Button Link', 'nmdivi-divi-custom-mod'),
+				'label'           => esc_html__('Button Link', 'nm_divi'),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nmdivi-divi-custom-mod'),
-				'toggle_slug'     => 'button',
+				'description'     => esc_html__('', 'nm_divi'),
+				'toggle_slug'     => 'nm_btn',
 			),
-			'button_url_new_window' => array(
+			'nm_btn_url_new_window' => array(
 				'default'         => 'off',
 				'default_on_front' => true,
-				'label'           => esc_html__('Url Mode', 'dicm-divi-custom-modules'),
+				'label'           => esc_html__('Url Open', 'dicm-divi-custom-modules'),
 				'type'            => 'select',
 				'option_category' => 'configuration',
 				'options'         => array(
 					'off' => esc_html__('In The Same Window', 'dicm-divi-custom-modules'),
 					'on'  => esc_html__('In The New Tab', 'dicm-divi-custom-modules'),
 				),
-				'toggle_slug'     => 'button',
+				'toggle_slug'     => 'nm_btn',
 				'description'     => esc_html__('', 'dicm-divi-custom-modules'),
 			),
 		);
 	}
 
+	public function nm_render_image()
+	{
+		return sprintf(
+			'<div class="featured-box-image">
+				<div class="image-mask">
+					<img src="%1$s" alt="Tree Plantation System" />
+				</div>
+		  	</div>',
+			$this->props['nm_img']
+		);
+	}
+	public function nm_render_tile()
+	{
+		return sprintf(
+			'<h3 className="featured-box-title">
+				<span>%1$s</span>
+			</h3>',
+			$this->props['nm_title']
+		);
+	}
+	public function nm_render_content()
+	{
+		return sprintf(
+			'<div className="featured-box-text">
+				%1$s
+			</div>',
+			$this->props['content']
+		);
+	}
+	public function nm_render_button()
+	{
+		$btn_inline_block = $this->prop['btn_inline_block'] === true ? 'display-inline-block' : '';
+
+		// Render button
+		$button = $this->render_button(array(
+			'button_text'      => $this->props['button_text'],
+			'button_url'       => $this->props['button_url'],
+			'url_new_window'   => $this->props['button_url_new_window'],
+			'button_classname'    => array('featured-box-readmore', $btn_inline_block),
+		));
+
+		return sprintf(
+			'<div className="featured-box-button">
+				%1$s
+			</div>',
+			$button
+		);
+	}
+
 	public function render($attrs, $content = null, $render_slug)
 	{
-
-
-		// Content
-		$title = $this->props['nm_title'];
-		$content = $this->props['content'];
-
-		//Image
-		$img = $this->props['nm_img'];
-
-		//Button
-		$btn_txt = $this->props['nm_btn'];
-		$btn_url = $this->props['nm_btn_url'];
-
-		// $button = $this->render_button([
-		// 	'button_text'      => $btn_txt,
-		// 	'button_url'       => $btn_url,
-		// ]);
-
 		$output = sprintf(
-			'        <div class="test featured-box featured-box-default">
-			<div class="featured-box-image">
-			  <div class="image-mask">
-				<img src="%3$s" alt="Tree Plantation System" />
-			  </div>
-			</div>
-			<div class="featured-box-content">
-			  <h3 class="featured-box-title">
-				<span>%1$s</span>
-			  </h3>
-			  <div class="featured-box-text">%2$s</div>
-			  <div class="featured-box-button">
-				<a class="featured-box-readmore display-inline-block" href="%4$s">
-				%5$s
-				</a>
-			  </div>
-			</div>
-		  </div>',
-			esc_html__($title),
-			esc_html__($content),
-			$img,
-			esc_url($btn_url),
-			esc_html__($btn_txt)
+			'<div class="test featured-box featured-box-default">
+				%1$s
+				<div className="featured-box-content">
+					%2$s
+					%3$s
+					%4$s
+			  	</div>
+		  	</div>',
+			$this->nm_render_image(),
+			$this->nm_render_tile(),
+			$this->nm_render_content(),
+			$this->nm_render_button()
 		);
 
 		return $output;

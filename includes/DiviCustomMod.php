@@ -9,7 +9,7 @@ class NMDIVI_DiviCustomMod extends DiviExtension {
 	 *
 	 * @var string
 	 */
-	public $gettext_domain = 'nmdivi-divi-custom-mod';
+	public $gettext_domain = 'nm_divi';
 
 	/**
 	 * The extension's WP Plugin name.

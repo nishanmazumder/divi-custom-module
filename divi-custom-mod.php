@@ -8,7 +8,7 @@ Author:      Nishan M
 Author URI:  https://www.bdsoftcreation.com
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: nmdivi-divi-custom-mod
+Text Domain: nm_divi
 Domain Path: /languages
 
 Divi Cusotom Module is free software: you can redistribute it and/or modify

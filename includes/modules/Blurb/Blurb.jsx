@@ -26,6 +26,13 @@ class NM_BLURB extends Component {
     this.setState({ width: window.innerWidth });
   }
 
+  static css(props) {
+    const additionalCss = [];
+
+    let title = this.props.nm_title;
+
+  }
+
   render() {
     const title = this.props.nm_title;
     // const Content = this.props.content();

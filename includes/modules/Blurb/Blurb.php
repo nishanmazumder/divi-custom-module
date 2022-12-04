@@ -1,8 +1,8 @@
 <?php
-
+// Get require files
+if (function_exists('get_all_require_files')) get_all_require_files();
 class NMDIVI_BLURB extends ET_Builder_Module
 {
-
 	public $slug       = 'nmdivi_blurb';
 	public $vb_support = 'on';
 
@@ -12,18 +12,39 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		'author_uri' => 'https://www.bdsoftcreation.com',
 	);
 
+	/**
+	 *
+	 * Init
+	 *
+	 * @since v1.0.0
+	 *
+	 */
+
 	public function init()
 	{
+		// Name
 		$this->name = esc_html__('NM Blurb', 'nm_divi');
 
-		// icon
+		// Icon
 		$this->icon = "Icon";
 
 		// Main class
+		$this->main_css_element = "%%order_class%%";
+	}
 
 
-		// Modal Toggle
-		$this->settings_modal_toggles = [
+	/**
+	 *
+	 * Modal configuration
+	 *
+	 * @return array
+	 *
+	 */
+
+	public function get_settings_modal_toggles()
+	{
+		return [
+			// General
 			'general' => [
 				'toggles' => [
 					'nm_title' => esc_html__('Title', 'nm_divi'),
@@ -33,6 +54,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 				]
 			],
 
+			// Advanced
 			'advanced' => [
 				'toggles' => [
 					'nm_title' => esc_html__('Title', 'nm_divi'),
@@ -44,234 +66,52 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		];
 	}
 
-	///////////// Get advance filed config
 
-	public function get_advanced_fields_config()
-	{
-		$advanced_fields = array();
+	/**
+	 *
+	 * All fields
+	 *
+	 * @return array
+	 *
+	 */
 
-		$advanced_fields['text'] = false;
-
-		$advanced_fields['fonts'] = array(
-
-			// Title
-			'nm_title'   => array(
-				'label'         => esc_html__('Title', 'nm_divi'),
-				'toggle_slug'   => 'nm_title',
-				'tab_slug'        => 'advanced',
-				'line_height' => array(
-					'default' => '1em',
-				),
-				'font_size' => array(
-					'default' => '24px',
-				),
-				'font-weight' => array(
-					'default' => 'bold'
-				),
-				'css'      => array(
-					'main' => " %%order_class%% .featured-box-title",
-					//'hover' => "%%order_class%% .featured-box-title:hover .featured-box-title",
-					'hover' => "%%order_class%% .featured-box-title:hover",
-					'important' => 'all',
-				),
-				'header_level' => array(
-					'default' => 'h3',
-				),
-			),
-
-			// Content
-			'nm_content'   => array(
-				'label'         => esc_html__('Content', 'nm_divi'),
-				'toggle_slug'   => 'nm_content',
-				'sub_toggle'  => 'body',
-				'line_height' => array(
-					'default' => '1em',
-				),
-				'font_size' => array(
-					'default' => '14px',
-				),
-				'css'      => array(
-					'main' => "%%order_class%% .featured-box-text",
-					'hover' => "%%order_class%% .featured-box-text:hover",
-					'important' => 'all',
-				),
-			),
-
-			// button
-			'nm_button'   => array(
-				'label'         => esc_html__('Button', 'nm_divi'),
-				'toggle_slug'   => 'nm_button',
-				'tab_slug'        => 'advanced',
-				'line_height' => array(
-					'default' => '1em',
-				),
-				'font_size' => array(
-					'default' => '18px',
-				),
-				'css'      => array(
-					'main' => "%%order_class%% .featured-box-readmore",
-					'hover' => "%%order_class%% .featured-box-readmore:hover",
-					'important' => 'all',
-				)
-			),
-		);
-
-		// $advanced_fields['background'] = array(
-		// 	'has_background_color_toggle'   => false, // default. Warning: to be deprecated
-		// 	'use_background_color'          => true, // default
-		// 	'use_background_color_gradient' => true, // default
-		// 	'use_background_image'          => true, // default
-		// 	'use_background_video'          => true, // default
-		// );
-
-		// $advanced_fields['background'] = array(
-		// 	'nm_title' => array(
-		// 		'use_background_color'          => true,
-		// 	)
-		// );
-
-		$advanced_fields['button']['nm_button'] = array(
-			'label'          => esc_html__('Button', 'nm_divi'),
-			'css'            => array(
-				'main'      => '%%order_class%% .featured-box-readmore',
-				'alignment' => '%%order_class%% .featured-box-button',
-				'important' => 'all',
-			),
-			'use_alignment'  => true,
-			'box_shadow'     => array(
-				'css' => array(
-					'main' => '%%order_class%% .featured-box-readmore',
-				),
-			),
-			'borders'        => array(
-				'css' => array(
-					'important' => 'all',
-				),
-			),
-			'margin_padding' => array(
-				'css' => array(
-					'important' => 'all',
-				),
-			),
-		);
-
-		$advanced_fields['margin_padding'] = array(
-			'css'   => array(
-				'important' => 'all'
-			)
-		);
-
-		// $advanced_fields['image'] = array(
-		// 	'label'         => esc_html__('Image', 'nm_divi'),
-		// 	'toggle_slug'   => 'nm_image',
-		// 	'tab_slug'        => 'advanced',
-		// 	'css' => array(
-		// 		'main' => array(
-		// 			'%%order_class%% image-mask img',
-		// 		)
-		// 	),
-		// );
-
-		return $advanced_fields;
-	}
-
-	////////////////// Get all fields
 
 	public function get_fields()
 	{
-		$title = array(
-			'nm_title' => array(
-				'label'           => esc_html__('Title', 'nm_divi'),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nm_divi'),
-				'toggle_slug'     => 'nm_title',
-			),
-
-			'nm_title_bg' => array(
-				'label'           => esc_html__('Title Background', 'nm_divi'),
-				'type'            => 'color-alpha',
-				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nm_divi'),
-				'toggle_slug'     => 'nm_title',
-				'tab_slug'        => 'advanced'
-			),
-		);
-
-		$content = array(
-			'nm_content' => array(
-				'label'           => esc_html__('Content', 'nm_divi'),
-				'type'            => 'tiny_mce',
-				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nm_divi'),
-				'toggle_slug'     => 'nm_content',
-			),
-
-			'nm_content_bg' => array(
-				'label'           => esc_html__('Content Background', 'nm_divi'),
-				'type'            => 'color',
-				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nm_divi'),
-				'toggle_slug'     => 'nm_content',
-				'tab_slug'        => 'advanced'
-			),
-		);
-
-		$image = array(
-			'nm_img' => array(
-				'label'           => esc_html__('Image', 'nm_divi'),
-				'type'            => 'upload',
-				'upload_button_text' => esc_attr__('Upload an image', 'nm_divi'),
-				'choose_text'        => esc_attr__('Choose an Image', 'nm_divi'),
-				'update_text'        => esc_attr__('Set As Image', 'nm_divi'),
-				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nm_divi'),
-				'toggle_slug'     => 'nm_img',
-			),
-		);
-
-
-		$button = array(
-			'nm_btn' => array(
-				'label'           => esc_html__('Button Label', 'nm_divi'),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nm_divi'),
-				'toggle_slug'     => 'nm_button',
-			),
-			'nm_btn_url' => array(
-				'label'           => esc_html__('Button Link', 'nm_divi'),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'description'     => esc_html__('', 'nm_divi'),
-				'toggle_slug'     => 'nm_button',
-			),
-			'nm_btn_url_new_window' => array(
-				'default'         => 'off',
-				'default_on_front' => true,
-				'label'           => esc_html__('Url Open', 'nm_divi'),
-				'type'            => 'select',
-				'option_category' => 'configuration',
-				'options'         => array(
-					'off' => esc_html__('In The Same Window', 'nm_divi'),
-					'on'  => esc_html__('In The New Tab', 'nm_divi'),
-				),
-				'toggle_slug'     => 'nm_button',
-				'description'     => esc_html__('', 'nm_divi'),
-			),
-		);
-
-
-		return array_merge($title, $content, $image, $button);
+		return (new class
+		{
+			use GET_FIELDS;
+		}
+		)::get_fields();
 	}
 
+	/**
+	 *
+	 * Advanced fields configuration
+	 *
+	 * @return array
+	 *
+	 */
+
+	public function get_advanced_fields_config()
+	{
+		return (new class
+		{
+			use GET_ADV_FIELDS_CONFIG;
+		}
+		)::get_adv_fields_config();
+	}
+
+	/**
+	 *
+	 * Custom css fields
+	 *
+	 * @return array
+	 *
+	 */
 
 	public function get_custom_css_fields_config()
 	{
-
-		// $title_bg = $this->props['nm_title_bg'];
-		// $content_bg = $this->props['nm_content_bg'];
-
 		return array(
 			'nm_title_bg' => array(
 				'label'    => esc_html__('Title', 'nm_divi'),
@@ -284,6 +124,72 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		);
 	}
 
+	/**
+	 *
+	 * Render (frontend)
+	 *
+	 * @return array
+	 *
+	 */
+
+	public function render($attrs, $content = null, $render_slug)
+	{
+		// Get all render css
+		$this->render_css($render_slug);
+
+		// Render
+		$output = sprintf(
+			'<div class="featured-box featured-box-default">
+				%1$s
+				<div className="featured-box-content">
+					%2$s
+					%3$s
+					%4$s
+			  	</div>
+		  	</div>',
+			$this->nm_render_image(),
+			$this->nm_render_title(),
+			$this->nm_render_content(),
+			$this->nm_render_button()
+		);
+
+		// Return render
+		return $output;
+	}
+
+	// Render Css
+	public function render_css($render_slug)
+	{
+		$title_bg = $this->props['nm_title_bg'];
+		$content_bg = $this->props['nm_content_bg'];
+
+		if ('' !== $title_bg) {
+			// self::set_style($this->slug, array(
+			// 	'selector'    => '%%order_class%% .featured-box-title',
+			// 	'declaration' => sprintf('background-color:%s;', $title_bg)
+			// ));
+
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					esc_html($title_bg)
+				),
+			));
+		}
+
+		if ('' !== $content_bg) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					esc_html($content_bg)
+				),
+			));
+		}
+	}
+
+	// Image block
 	public function nm_render_image()
 	{
 		return sprintf(
@@ -295,6 +201,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			esc_url($this->props['nm_img'])
 		);
 	}
+
+	// Title block
 	public function nm_render_title()
 	{
 		return sprintf(
@@ -304,6 +212,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			esc_html($this->props['nm_title'])
 		);
 	}
+
+	// Content block
 	public function nm_render_content()
 	{
 		return sprintf(
@@ -313,6 +223,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			esc_html($this->props['nm_content'])
 		);
 	}
+
+	// Button block
 	public function nm_render_button()
 	{
 		$btn_inline_block = $this->props['btn_inline_block'] === true ? 'display-inline-block' : '';
@@ -332,87 +244,15 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			$button
 		);
 	}
+}
 
+function get_all_require_files()
+{
+	// Get Fields
+	include_once plugin_dir_path(__FILE__) .  'inc/get-fields.php';
 
-	///////////////////Render
-
-	public function render($attrs, $content = null, $render_slug)
-	{
-		$this->render_css($render_slug);
-
-		// ET_Builder_Element::set_style( $render_slug, array(
-		// 	'selector'    => '%%order_class%% .featured-box-title',
-		// 	'declaration' => sprintf(
-		// 		'background-color: %1$s !important;',
-		// 		esc_html($this->props['nm_title_bg'])
-		// 	),
-		// ) );
-
-		// echo '<pre>';
-		// print_r($this->props['nm_title_bg']);
-		// exit;
-
-		$output = sprintf(
-			'<div class="featured-box featured-box-default">
-				%1$s
-				<div className="featured-box-content">
-					%2$s
-					%3$s
-					%4$s
-			  	</div>
-		  	</div>',
-			$this->nm_render_image(),
-			$this->nm_render_title(),
-			$this->nm_render_content(),
-			$this->nm_render_button()
-		);
-
-		return $output;
-	}
-
-	public function render_css($render_slug)
-	{
-
-
-		$title_bg = $this->props['nm_title_bg'];
-		$content_bg = $this->props['nm_content_bg'];
-
-		if ('' !== $title_bg) {
-			self::set_style($this->slug, array(
-				'selector'    => '%%order_class%% .featured-box-title',
-				'declaration' => sprintf('background-color:%s;', $title_bg)
-			));
-
-			// ET_Builder_Element::set_style($render_slug, array(
-			// 	'selector'    => '%%order_class%% .featured-box-title',
-			// 	'declaration' => sprintf(
-			// 		'background-color: %1$s !important;',
-			// 		esc_html($title_bg)
-			// 	),
-			// ));
-
-			// $test =  sprintf(
-			// 	'background-color: %1$s !important;',
-			// 	esc_html($title_bg)
-			// );
-
-			// print_r($test);
-
-
-
-
-		}
-
-		// if (!empty($content_bg)) {
-		// 	ET_Builder_Element::set_style($render_slug, array(
-		// 		'selector'    => '%%order_class%% .featured-box-content',
-		// 		'declaration' => sprintf(
-		// 			'background-color: %1$s !important;',
-		// 			esc_html($content_bg)
-		// 		),
-		// 	));
-		// }
-	}
+	// Get Advanced fields configuration
+	include_once plugin_dir_path(__FILE__) .  'inc/get-adv-fields-config.php';
 }
 
 new NMDIVI_BLURB;

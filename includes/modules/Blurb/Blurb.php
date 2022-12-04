@@ -155,16 +155,6 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			),
 		);
 
-		// $advanced_fields['background'] = array(
-		// 	'nm_title_bg' => array(
-		// 		'css'      => array(
-		// 			'main' => "%%order_class%% .featured-box-readmore",
-		// 			'hover' => "%%order_class%% .featured-box-readmore:hover",
-		// 			'important' => 'all',
-		// 		),
-		// 	)
-		// );
-
 		$advanced_fields['margin_padding'] = array(
 			'css'   => array(
 				'important' => 'all'
@@ -200,7 +190,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 
 			'nm_title_bg' => array(
 				'label'           => esc_html__('Title Background', 'nm_divi'),
-				'type'            => 'color',
+				'type'            => 'color-alpha',
 				'option_category' => 'basic_option',
 				'description'     => esc_html__('', 'nm_divi'),
 				'toggle_slug'     => 'nm_title',
@@ -387,38 +377,41 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		$title_bg = $this->props['nm_title_bg'];
 		$content_bg = $this->props['nm_content_bg'];
 
-
-		echo '<pre>';
-		print_r($title_bg);
-		// exit;
-
 		if ('' !== $title_bg) {
-
-			$test =  sprintf(
-				'background-color: %1$s !important;',
-				esc_html($title_bg)
-			);
-
-			print_r($test);
-
-			ET_Builder_Element::set_style($render_slug, array(
+			self::set_style($this->slug, array(
 				'selector'    => '%%order_class%% .featured-box-title',
-				'declaration' => sprintf(
-					'background-color: %1$s !important;',
-					esc_html($title_bg)
-				),
+				'declaration' => sprintf('background-color:%s;', $title_bg)
 			));
+
+			// ET_Builder_Element::set_style($render_slug, array(
+			// 	'selector'    => '%%order_class%% .featured-box-title',
+			// 	'declaration' => sprintf(
+			// 		'background-color: %1$s !important;',
+			// 		esc_html($title_bg)
+			// 	),
+			// ));
+
+			// $test =  sprintf(
+			// 	'background-color: %1$s !important;',
+			// 	esc_html($title_bg)
+			// );
+
+			// print_r($test);
+
+
+
+
 		}
 
-		if (!empty($content_bg)) {
-			ET_Builder_Element::set_style($render_slug, array(
-				'selector'    => '%%order_class%% .featured-box-content',
-				'declaration' => sprintf(
-					'background-color: %1$s !important;',
-					esc_html($content_bg)
-				),
-			));
-		}
+		// if (!empty($content_bg)) {
+		// 	ET_Builder_Element::set_style($render_slug, array(
+		// 		'selector'    => '%%order_class%% .featured-box-content',
+		// 		'declaration' => sprintf(
+		// 			'background-color: %1$s !important;',
+		// 			esc_html($content_bg)
+		// 		),
+		// 	));
+		// }
 	}
 }
 

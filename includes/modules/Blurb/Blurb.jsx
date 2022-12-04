@@ -7,11 +7,24 @@ import "./style.css";
 class NM_BLURB extends Component {
   static slug = "nm_divi_blurb";
 
-  // constructor(props){
-  //   super(props)
+  constructor(props) {
+    super(props);
+    this.state = { width: 0 };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
 
-  //   console.log(props)
-  // }
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth });
+  }
 
   render() {
     const title = this.props.nm_title;
@@ -20,7 +33,8 @@ class NM_BLURB extends Component {
     const img = this.props.nm_img;
     const btn_text = this.props.nm_btn;
     const btn_url = this.props.nm_btn_url;
-    const btn_target = 'on' === this.props.nm_btn_url_new_window ? '_blank' : '';
+    const btn_target =
+      "on" === this.props.nm_btn_url_new_window ? "_blank" : "";
 
     return (
       <>
@@ -38,7 +52,8 @@ class NM_BLURB extends Component {
             <div className="featured-box-button">
               <a
                 className="featured-box-readmore display-inline-block"
-                href={btn_url} target={btn_target}
+                href={btn_url}
+                target={btn_target}
               >
                 {btn_text}
               </a>

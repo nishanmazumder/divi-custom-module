@@ -4,34 +4,43 @@ import React, { Component } from "react";
 // Internal Dependencies
 import "./style.css";
 
-class NM_BLURB extends Component {
-  static slug = "nm_divi_blurb";
-
-  constructor(props) {
-    super(props);
-    this.state = { width: 0 };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth });
-  }
+class NMDIVI_BLURB extends Component {
+  static slug = "nmdivi_blurb";
 
   static css(props) {
-    const additionalCss = [];
+    let additionalCss = [];
 
-    let title = this.props.nm_title;
+    additionalCss.push([
+      {
+        selector: "%%order_class%% .featured-box-title",
+        declaration: `background-color: ${props.nm_title_bg} !important;`,
+      },
+    ]);
 
+    additionalCss.push([
+      {
+        selector: "%%order_class%% .featured-box-content",
+        declaration: `background-color: ${props.nm_content_bg} !important;`,
+      },
+    ]);
+
+    console.log(props);
+
+    return additionalCss;
   }
+
+  // componentDidMount() {
+  //   this.updateWindowDimensions();
+  //   window.addEventListener("resize", this.updateWindowDimensions);
+  // }
+
+  // componentWillUnmount() {
+  //   window.removeEventListener("resize", this.updateWindowDimensions);
+  // }
+
+  // updateWindowDimensions() {
+  //   this.setState({ width: window.innerWidth });
+  // }
 
   render() {
     const title = this.props.nm_title;
@@ -72,4 +81,4 @@ class NM_BLURB extends Component {
   }
 }
 
-export default NM_BLURB;
+export default NMDIVI_BLURB;

@@ -1,4 +1,4 @@
 import TextBlock from './TextBlock/TextBlock';
-import NM_BLURB from './Blurb/Blurb';
+import NMDIVI_BLURB from './Blurb/Blurb';
 
-export default [TextBlock, NM_BLURB];
+export default [TextBlock, NMDIVI_BLURB];

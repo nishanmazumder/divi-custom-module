@@ -23,7 +23,7 @@ trait GET_FIELDS
             'nm_title_bg' => array(
                 'label'           => esc_html__('Title Background', 'nm_divi'),
                 'type'            => 'color-alpha',
-                'hover'                => 'tabs',
+                'hover'           => 'tabs',
                 'option_category' => 'basic_option',
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_title',
@@ -51,12 +51,12 @@ trait GET_FIELDS
 
             'nm_content_bg' => array(
                 'label'           => esc_html__('Content Background', 'nm_divi'),
-                'type'            => 'color',
+                'type'            => 'color-alpha',
                 'option_category' => 'basic_option',
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_content',
                 'tab_slug'        => 'advanced',
-                'hover'           => 'tabs'
+                'hover'           => 'tabs',
             ),
         );
 
@@ -175,6 +175,27 @@ trait GET_FIELDS
                 'responsive'        => true,
                 'mobile_options'    => true
             ),
+            'nm_content_space' => array(
+                'label'             => esc_html__('Content Spacing', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_button_space' => array(
+                'label'             => esc_html__('Button Spacing', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+
         ];
 
         // Return all values

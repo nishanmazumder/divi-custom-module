@@ -1,3 +1,11 @@
 .featured-box{
     width: 100% !important;
 }
+
+.display-block{
+    display: block;
+}
+
+.display-inline-block{
+    display: inline-block;
+}

@@ -58,9 +58,21 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			'advanced' => [
 				'toggles' => [
 					'nm_title' => esc_html__('Title', 'nm_divi'),
-					'nm_content' => esc_html__('Content', 'nm_divi'),
 					'nm_image' => esc_html__('Image', 'nm_divi'),
-					'nm_button' => esc_html__('Button', 'nm_divi')
+					'nm_button' => esc_html__('Button', 'nm_divi'),
+					'nm_content' => esc_html__('Content', 'nm_divi'),
+					'custom_spacing'    => array(
+						'title'             => esc_html__('Custom Spacing', 'nm_divi'),
+						'tabbed_subtoggles' => true,
+						'sub_toggles' => array(
+							'wrapper'   => array(
+								'name' => 'Wrapper',
+							),
+							'content'     => array(
+								'name' => 'Content'
+							)
+						),
+					)
 				]
 			]
 		];
@@ -162,31 +174,52 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	{
 		$title_bg = $this->props['nm_title_bg'];
 		$content_bg = $this->props['nm_content_bg'];
+		$button_bg = $this->props['nm_btn_bg'];
+		$button_margin = $this->props['nm_button_custom_margin'];
+		$button_padding = $this->props['nm_button_custom_padding'];
+
+
 
 		if ('' !== $title_bg) {
-			// self::set_style($this->slug, array(
-			// 	'selector'    => '%%order_class%% .featured-box-title',
-			// 	'declaration' => sprintf('background-color:%s;', $title_bg)
-			// ));
-
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-title',
 				'declaration' => sprintf(
 					'background-color: %1$s;',
-					esc_html($title_bg)
+					$title_bg
 				),
 			));
 		}
 
 		if ('' !== $content_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
-				'selector'    => '%%order_class%% .featured-box-title',
+				'selector'    => '%%order_class%% .featured-box-content',
 				'declaration' => sprintf(
 					'background-color: %1$s;',
-					esc_html($content_bg)
+					$content_bg
 				),
 			));
 		}
+
+		if ('' !== $button_bg) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-button a',
+				'declaration' => sprintf(
+					'background-color: %1$s; margin: %2$s; padding: %3$s;',
+					$button_bg, $button_margin, $button_padding
+				),
+			));
+		}
+
+
+
+
+
+
+		// self::set_style($this->slug, array(
+		// 	'selector'    => '%%order_class%% .featured-box-title',
+		// 	'declaration' => sprintf('background-color:%s;', $title_bg)
+		// ));
+
 	}
 
 	// Image block
@@ -206,7 +239,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	public function nm_render_title()
 	{
 		return sprintf(
-			'<h3 className="featured-box-title">
+			'<h3 class="featured-box-title">
 				<span>%1$s</span>
 			</h3>',
 			esc_html($this->props['nm_title'])
@@ -217,7 +250,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	public function nm_render_content()
 	{
 		return sprintf(
-			'<div className="featured-box-text">
+			'<div class="featured-box-text">
 				%1$s
 			</div>',
 			esc_html($this->props['nm_content'])
@@ -227,19 +260,29 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	// Button block
 	public function nm_render_button()
 	{
-		// $btn_inline_block = $this->props['btn_inline_block'] === true ? 'display-inline-block' : '';
+		$btn_txt = $this->props['nm_btn'];
+		$btn_url = $this->props['nm_btn_url'];
+		//$btn_target = ("on" === $this->props['nm_btn_url_new_window']) ? "_blank" : "_self";
+		$btn_target = $this->props['nm_btn_url_new_window'];
+		$btn_icon = $this->props['nm_button_icon'];
+		$btn_custom         = $this->props['custom_button'];
+		$btn_rel            = $this->props['button_rel'];
+		$button_width = ("on" === $this->props['nm_btn_full_width']) ? "display-block" : "display-inline-block";
 
 		// Render button
-		$button = $this->render_button(array(
-			'button_text'      => $this->props['nm_btn'],
-			'button_url'       => $this->props['nm_btn_url'],
-			'url_new_window'   => $this->props['nm_btn_url_new_window'],
-			'button_classname'    => array('featured-box-readmore', 'display-inline-block'),
-		));
+		$button = $this->render_button( array(
+			'button_text'      => $btn_txt,
+			'button_url'       => $btn_url,
+			'url_new_window'   => $btn_target,
+			'button_custom'    => $btn_custom,
+			'button_rel'       => $btn_rel,
+			'custom_icon'      => $btn_icon,
+			'button_classname'    => array( 'featured-box-readmore', $button_width  ),
+		) );
 
 		return sprintf(
-			'<div className="featured-box-button">
-				%1$s
+			'<div class="featured-box-button">
+					%1$s
 			</div>',
 			$button
 		);

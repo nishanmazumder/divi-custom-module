@@ -23,6 +23,7 @@ trait GET_FIELDS
             'nm_title_bg' => array(
                 'label'           => esc_html__('Title Background', 'nm_divi'),
                 'type'            => 'color-alpha',
+                'hover'                => 'tabs',
                 'option_category' => 'basic_option',
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_title',
@@ -54,7 +55,8 @@ trait GET_FIELDS
                 'option_category' => 'basic_option',
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_content',
-                'tab_slug'        => 'advanced'
+                'tab_slug'        => 'advanced',
+                'hover'           => 'tabs'
             ),
         );
 
@@ -131,14 +133,14 @@ trait GET_FIELDS
                 'toggle_slug'     => 'nm_button',
                 'description'     => esc_html__('', 'nm_divi'),
             ),
-            'nm_btn_bg' => array(
-                'label'           => esc_html__('Button Background', 'nm_divi'),
-                'type'            => 'color-alpha',
-                'option_category' => 'basic_option',
-                'description'     => esc_html__('', 'nm_divi'),
-                'toggle_slug'     => 'nm_button',
-                'tab_slug'        => 'advanced'
-            ),
+            // 'nm_btn_bg' => array(
+            //     'label'           => esc_html__('Button Background', 'nm_divi'),
+            //     'type'            => 'color-alpha',
+            //     'option_category' => 'basic_option',
+            //     'description'     => esc_html__('', 'nm_divi'),
+            //     'toggle_slug'     => 'nm_button',
+            //     'tab_slug'        => 'advanced'
+            // ),
             'nm_btn_full_width'  => array(
                 'label'             => esc_html__('Enable Button Fullwidth', 'nm_divi'),
                 'type'              => 'yes_no_button',

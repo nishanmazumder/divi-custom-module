@@ -146,6 +146,11 @@ class NMDIVI_BLURB extends ET_Builder_Module
 
 	public function render($attrs, $content = null, $render_slug)
 	{
+		// echo '<pre>';
+
+
+		// print_r($this->get_transition_fields_css_props());
+
 		// Get all render css
 		$this->render_css($render_slug);
 
@@ -173,10 +178,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	public function render_css($render_slug)
 	{
 		$title_bg = $this->props['nm_title_bg'];
+		$title_bg_hover = $this->props['nm_title_bg__hover'];
 		$content_bg = $this->props['nm_content_bg'];
-		$button_bg = $this->props['nm_btn_bg'];
-		$button_margin = $this->props['nm_button_custom_margin'];
-		$button_padding = $this->props['nm_button_custom_padding'];
 
 
 
@@ -186,6 +189,16 @@ class NMDIVI_BLURB extends ET_Builder_Module
 				'declaration' => sprintf(
 					'background-color: %1$s;',
 					$title_bg
+				),
+			));
+		}
+
+		if ('' !== $title_bg_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title:hover',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					$title_bg_hover
 				),
 			));
 		}
@@ -200,26 +213,24 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		if ('' !== $button_bg) {
-			ET_Builder_Element::set_style($render_slug, array(
-				'selector'    => '%%order_class%% .featured-box-button a',
-				'declaration' => sprintf(
-					'background-color: %1$s; margin: %2$s; padding: %3$s;',
-					$button_bg, $button_margin, $button_padding
-				),
-			));
-		}
-
-
-
-
-
-
 		// self::set_style($this->slug, array(
 		// 	'selector'    => '%%order_class%% .featured-box-title',
 		// 	'declaration' => sprintf('background-color:%s;', $title_bg)
 		// ));
 
+	}
+
+	public function get_transition_fields_css_props()
+	{
+		$fields = parent::get_transition_fields_css_props();
+
+		// $title_bg = '%%order_class%% .featured-box-title';
+		// $content_bg = '%%order_class%% .featured-box-content';
+
+        $fields['nm_title_bg'] = array('background-color' => '%%order_class%% .featured-box-title');
+        // $fields['nm_content_bg'] = array('background-color' => $content_bg);
+
+		return $fields;
 	}
 
 	// Image block
@@ -277,7 +288,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			'button_custom'    => $btn_custom,
 			'button_rel'       => $btn_rel,
 			'custom_icon'      => $btn_icon,
-			'button_classname'    => array( 'featured-box-readmore', $button_width  ),
+			'has_wrapper'         => false,
+			'button_classname'    => array('featured-box-readmore', $button_width),
 		) );
 
 		return sprintf(

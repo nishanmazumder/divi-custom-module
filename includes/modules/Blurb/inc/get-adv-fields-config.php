@@ -62,47 +62,70 @@ trait GET_ADV_FIELDS_CONFIG
             ),
 
             // button
-            'nm_button'   => array(
-                'label'         => esc_html__('Button', 'nm_divi'),
-                'toggle_slug'   => 'nm_button',
-                'tab_slug'        => 'advanced',
-                'line_height' => array(
-                    'default' => '1em',
-                ),
-                'font_size' => array(
-                    'default' => '18px',
-                ),
-                'css'      => array(
-                    'main' => "%%order_class%% .featured-box-readmore",
-                    'hover' => "%%order_class%% .featured-box-readmore:hover",
-                    'important' => 'all',
-                )
-            ),
+            // 'nm_button'   => array(
+            //     'label'         => esc_html__('Button', 'nm_divi'),
+            //     'toggle_slug'   => 'nm_button',
+            //     'tab_slug'        => 'advanced',
+            //     'line_height' => array(
+            //         'default' => '1em',
+            //     ),
+            //     'font_size' => array(
+            //         'default' => '18px',
+            //     ),
+            //     'css'      => array(
+            //         'main' => "%%order_class%% .featured-box-readmore",
+            //         'hover' => "%%order_class%% .featured-box-readmore:hover",
+            //         'important' => 'all',
+            //     )
+            // ),
         );
 
+        // $advanced_fields['button']['nm_button'] = array(
+        //     'label'          => esc_html__('Button', 'nm_divi'),
+        //     'css'            => array(
+        //         'main'      => '%%order_class%% .featured-box-readmore .et_pb_button',
+        //         'alignment' => '%%order_class%% .featured-box-button',
+        //         'important' => 'all',
+        //     ),
+        //     'use_alignment'  => true,
+        //     'box_shadow'     => array(
+        //         'css' => array(
+        //             'main'      => "%%order_class%% .featured-box-readmore .et_pb_button",
+        //             'important' => 'all',
+        //         ),
+        //     ),
+        //     'borders'        => array(
+        //         'css' => array(
+        //             'main'      => "%%order_class%% .featured-box-readmore .et_pb_button",
+        //             'important' => 'all',
+        //         ),
+        //     ),
+        //     'margin_padding' => array(
+        //         'css' => array(
+        //             'main'      => "%%order_class%% .featured-box-readmore .et_pb_button",
+        //             'important' => 'all',
+        //         ),
+        //     ),
+        // );
+
         $advanced_fields['button']['nm_button'] = array(
-            'label'          => esc_html__('Button', 'nm_divi'),
-            'css'            => array(
-                'main'      => '%%order_class%% .featured-box-readmore a',
-                'alignment' => '%%order_class%% .featured-box-button',
-                'important' => 'all',
-            ),
-            'use_alignment'  => true,
+            'label' => esc_html__('Button', 'nm_divi'),
+            'toggle_slug'   => 'nm_button',
+            'tab_slug'        => 'advanced',
             'box_shadow'     => array(
                 'css' => array(
-                    'main' => '%%order_class%% .featured-box-readmore a',
-                ),
-            ),
-            'borders'        => array(
-                'css' => array(
+                    'main' => '%%order_class%% a.featured-box-readmore',
+                    'alignment' => '%%order_class%% .featured-box-button', //.et_pb_button_wrapper
                     'important' => 'all',
                 ),
             ),
             'margin_padding' => array(
                 'css' => array(
+                    'main'      => "%%order_class%% a.featured-box-readmore",
                     'important' => 'all',
                 ),
             ),
+            'use_alignment'  => true,
         );
 
         $advanced_fields['borders'] = array(

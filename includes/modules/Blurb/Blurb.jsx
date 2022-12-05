@@ -14,9 +14,18 @@ class NMDIVI_BLURB extends Component {
     additionalCss.push([
       {
         selector: "%%order_class%% .featured-box-title",
-        declaration: `background-color: ${props.nm_title_bg} !important;`,
+        declaration: `background-color: ${props.nm_title_bg};`,
       },
     ]);
+
+    // if(props.title_bg_hover){
+    //   additionalCss.push([
+    //     {
+    //       selector: "%%order_class%% .featured-box-title",
+    //       declaration: `background-color: ${props.title_bg_hover};`,
+    //     },
+    //   ]);
+    // }
 
     // Content
     additionalCss.push([
@@ -39,12 +48,12 @@ class NMDIVI_BLURB extends Component {
     ]);
 
     // Button
-    additionalCss.push([
-      {
-        selector: "%%order_class%% .featured-box-button a",
-        declaration: `background-color: ${props.nm_btn_bg};`,
-      },
-    ]);
+    // additionalCss.push([
+    //   {
+    //     selector: "%%order_class%% .featured-box-button a",
+    //     declaration: `background-color: ${props.nm_btn_bg};`,
+    //   },
+    // ]);
 
     console.log(props);
 
@@ -70,7 +79,7 @@ class NMDIVI_BLURB extends Component {
     return (
       <div className="featured-box-button">
         <a
-          className={utils.classnames(btn_class) + " featured-box-readmore display-inline-block"} //featured-box-readmore display-inline-block
+          className={utils.classnames(btn_class)} //featured-box-readmore display-inline-block
           href={btn_url}
           target={btn_target}
           rel={utils.linkRel(this.props.button_rel)}
@@ -81,19 +90,6 @@ class NMDIVI_BLURB extends Component {
       </div>
     );
   }
-
-  // componentDidMount() {
-  //   this.updateWindowDimensions();
-  //   window.addEventListener("resize", this.updateWindowDimensions);
-  // }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener("resize", this.updateWindowDimensions);
-  // }
-
-  // updateWindowDimensions() {
-  //   this.setState({ width: window.innerWidth });
-  // }
 
   render() {
     const title = this.props.nm_title;

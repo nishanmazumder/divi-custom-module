@@ -105,6 +105,23 @@ trait GET_ADV_FIELDS_CONFIG
             ),
         );
 
+        $advanced_fields['borders'] = array(
+            'default'               => array(),
+            'nm_title'         => array(
+                'css'               => array(
+                    'main'  => array(
+                        'border_radii' => "%%order_class%% .featured-box-title",
+                        'border_radii_hover' => "%%order_class%% .featured-box-title",
+                        'border_styles' => "%%order_class%% .featured-box-title",
+                        'border_styles_hover' => "%%order_class%% .featured-box-title",
+                    )
+                ),
+                'label'    => esc_html__('Title Border', 'nm_divi'),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_title',
+            ),
+            );
+
         $advanced_fields['margin_padding'] = array(
             'css'   => array(
                 'important' => 'all'

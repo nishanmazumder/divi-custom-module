@@ -61,8 +61,37 @@ trait GET_FIELDS
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_img',
             ),
+            'nm_img_alt_text' => array(
+                'label'                 => esc_html__('Image Alt Text', 'nm_divi'),
+                'description'           => esc_html__( 'This defines the HTML ALT text. A short description of your image can be placed here.', 'divi_flash' ),
+                'type'                  => 'text',
+                'toggle_slug'           => 'nm_img'
+            ),
+            'nm_img_alignment' => array(
+                'label'           => esc_html__('Image Alignment', 'nm_divi'),
+                'type'            => 'text_align',
+                'options'         => et_builder_get_text_orientation_options(array('justified')),
+                'toggle_slug'     => 'nm_image',
+                'mobile_options'    => true,
+                'tab_slug'        => 'advanced'
+            ),
+            'nm_img_width' => array(
+                'label'             => esc_html__('Image Width', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_image',
+                'tab_slug'          => 'advanced',
+                'default'           => '100%',
+                'allowed_units'     => array('%'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '100',
+                    'step' => '1'
+                ),
+                'responsive'        => true,
+                'mobile_options'    => true,
+                'description'     => esc_html__('Set Image container Width', 'nm_divi')
+            )
         );
-
 
         $button = array(
             'nm_btn' => array(

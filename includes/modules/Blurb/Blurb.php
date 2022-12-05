@@ -227,14 +227,14 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	// Button block
 	public function nm_render_button()
 	{
-		$btn_inline_block = $this->props['btn_inline_block'] === true ? 'display-inline-block' : '';
+		// $btn_inline_block = $this->props['btn_inline_block'] === true ? 'display-inline-block' : '';
 
 		// Render button
 		$button = $this->render_button(array(
 			'button_text'      => $this->props['nm_btn'],
 			'button_url'       => $this->props['nm_btn_url'],
 			'url_new_window'   => $this->props['nm_btn_url_new_window'],
-			'button_classname'    => array('featured-box-readmore', $btn_inline_block),
+			'button_classname'    => array('featured-box-readmore', 'display-inline-block'),
 		));
 
 		return sprintf(

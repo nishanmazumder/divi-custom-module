@@ -143,9 +143,6 @@ trait GET_ADV_FIELDS_CONFIG
                 'tab_slug'        => 'advanced',
                 'toggle_slug'     => 'nm_button',
             ),
-
-
-
         );
 
         $advanced_fields['filters'] = array(
@@ -157,9 +154,7 @@ trait GET_ADV_FIELDS_CONFIG
                     'main' => '%%order_class%% .featured-box-image img',
                     'hover' => '%%order_class%% .featured-box-image:hover .featured-box-image img'
                 ),
-
             ),
-
         );
 
         $advanced_fields['margin_padding'] = array(

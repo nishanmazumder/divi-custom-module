@@ -444,16 +444,6 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		// if('on' === $button_full_width){
-		// 	ET_Builder_Element::set_style($render_slug, array(
-		// 		'selector'    => '%%order_class%% .featured-box-button a',
-		// 		'declaration' => sprintf(
-		// 			'display: block;',
-		// 			$button_bg
-		// 		),
-		// 	));
-		// }
-
 		// self::set_style($this->slug, array(
 		// 	'selector'    => '%%order_class%% .featured-box-title',
 		// 	'declaration' => sprintf('background-color:%s;', $title_bg)
@@ -489,10 +479,10 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		return sprintf(
 			'<div class="featured-box-image">
 				<div class="image-mask">
-					<img src="%1$s" alt="Tree Plantation System" />
+					<img src="%1$s" alt="%2$s" />
 				</div>
 		  	</div>',
-			esc_url($this->props['nm_img'])
+			esc_url($this->props['nm_img']), esc_html($this->props['nm_img_alt_text'])
 		);
 	}
 
@@ -514,7 +504,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			'<div class="featured-box-text">
 				%1$s
 			</div>',
-			esc_html($this->props['nm_content'])
+			$this->props['nm_content']
 		);
 	}
 
@@ -526,8 +516,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		//$btn_target = ("on" === $this->props['nm_btn_url_new_window']) ? "_blank" : "_self";
 		$btn_target = $this->props['nm_btn_url_new_window'];
 		$btn_icon = $this->props['nm_button_icon'];
-		$btn_custom         = $this->props['custom_button'];
-		$btn_rel            = $this->props['button_rel'];
+		// $btn_custom         = $this->props['custom_button'];
+		// $btn_rel            = $this->props['button_rel'];
 		$button_width = ("on" === $this->props['nm_btn_full_width']) ? "display-block" : "display-inline-block";
 
 		// Render button
@@ -535,8 +525,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			'button_text'      => $btn_txt,
 			'button_url'       => $btn_url,
 			'url_new_window'   => $btn_target,
-			'button_custom'    => $btn_custom,
-			'button_rel'       => $btn_rel,
+			// 'button_custom'    => $btn_custom,
+			// 'button_rel'       => $btn_rel,
 			'custom_icon'      => $btn_icon,
 			'has_wrapper'         => false,
 			'button_classname'    => array('featured-box-readmore', $button_width),

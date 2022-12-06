@@ -65,6 +65,7 @@ trait GET_FIELDS
                 'option_category' => 'basic_option',
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_content',
+                'dynamic_content' => 'text'
             ),
 
             'nm_content_bg' => array(

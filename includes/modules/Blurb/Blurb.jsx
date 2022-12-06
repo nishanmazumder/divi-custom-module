@@ -214,7 +214,7 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    console.log(props);
+    // console.log(props);
 
     return additionalCss;
   }
@@ -237,6 +237,20 @@ class NMDIVI_BLURB extends Component {
   //     // return console.log(filtered)
   //   }
   // }
+
+  render_content = (propValue, key, textContent = true) => {
+    const field = propValue.dynamic[key];
+    if (key === 'content') {
+        return field.render('full');
+    }
+    let fieldContent = textContent ? field.render() : field;
+
+    if (field.loading) {
+        // Let Divi render the loading placeholder.
+        return textContent ? fieldContent : fieldContent.render();
+    }
+    return textContent ? fieldContent : fieldContent.value;
+}
 
   render_button = () => {
     const utils = window.ET_Builder.API.Utils;
@@ -275,9 +289,10 @@ class NMDIVI_BLURB extends Component {
   };
 
   render() {
+    // const content = this.props.content();
     const title = this.props.nm_title;
-    // const Content = this.props.content();
-    const content = this.props.nm_content;
+    const content = this.render_content(this.props, 'nm_content');
+    // const content = this.nm_content.render('full');
     const img = this.props.nm_img;
     const img_alt = this.props.nm_img_alt_text;
 

@@ -7,12 +7,19 @@ import "./style.css";
 class NMDIVI_BLURB extends Component {
   static slug = "nmdivi_blurb";
 
-  // constructor(props){
+  // constructor(props) {
   //   super(props);
 
-  //   this.state = {
-  //     title_space: {}
-  //   }
+  //   // let field = this.props.dynamic['nm_content'].render("full");
+
+  //   // check_propst_dynamic = () => {
+  //   //   return field;
+  //   // };
+
+  //   // console.log(field)
+  //   // this.state = {
+  //   //   title_space: {}
+  //   // }
   // }
 
   static css(props) {
@@ -62,7 +69,6 @@ class NMDIVI_BLURB extends Component {
         declaration: `max-width: ${props.nm_content_box_width}; margin: 0px auto;`,
       },
     ]);
-
 
     // Title BG
     if ("on|hover" === props.nm_title_bg__hover_enabled) {
@@ -238,20 +244,6 @@ class NMDIVI_BLURB extends Component {
   //   }
   // }
 
-  render_content = (propValue, key, textContent = true) => {
-    const field = propValue.dynamic[key];
-    if (key === 'content') {
-        return field.render('full');
-    }
-    let fieldContent = textContent ? field.render() : field;
-
-    if (field.loading) {
-        // Let Divi render the loading placeholder.
-        return textContent ? fieldContent : fieldContent.render();
-    }
-    return textContent ? fieldContent : fieldContent.value;
-}
-
   render_button = () => {
     const utils = window.ET_Builder.API.Utils;
     const btn_text = this.props.nm_btn;
@@ -291,7 +283,8 @@ class NMDIVI_BLURB extends Component {
   render() {
     // const content = this.props.content();
     const title = this.props.nm_title;
-    const content = this.render_content(this.props, 'nm_content');
+    // const content = this.render_content(this.props, "nm_content");
+    const content = this.props.dynamic['nm_content'].render("full");
     // const content = this.nm_content.render('full');
     const img = this.props.nm_img;
     const img_alt = this.props.nm_img_alt_text;

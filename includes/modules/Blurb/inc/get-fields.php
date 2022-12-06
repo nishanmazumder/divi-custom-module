@@ -12,6 +12,33 @@ trait GET_FIELDS
 {
     static function get_fields()
     {
+        $content_box = [
+            'nm_content_box_bg' => array(
+                'label'           => esc_html__('Content box Background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_box',
+                'tab_slug'        => 'advanced'
+            ),
+            'nm_content_box_width' => array(
+                'label'             => esc_html__('Content box Width', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'          => 'advanced',
+                'default'           => '100%',
+                'allowed_units'     => array('%'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '100',
+                    'step' => '1'
+                ),
+                'responsive'        => true,
+                'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi')
+            )
+        ];
+
         $title = array(
             'nm_title' => array(
                 'label'           => esc_html__('Title', 'nm_divi'),
@@ -28,16 +55,7 @@ trait GET_FIELDS
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_title',
                 'tab_slug'        => 'advanced'
-            ),
-            'nm_title_space' => array(
-                'label'           => esc_html__('Title Space', 'nm_divi'),
-                'type'            => 'margin_padding',
-                'option_category' => 'basic_option',
-                'description'     => esc_html__('', 'nm_divi'),
-                'toggle_slug'     => 'nm_title',
-                'tab_slug'        => 'advanced'
-            ),
-
+            )
         );
 
         $content = array(
@@ -164,8 +182,18 @@ trait GET_FIELDS
         );
 
         $custom_space = [
-            'nm_featured_box' => array(
-                'label'             => esc_html__('Box Spacing', 'nm_divi'),
+            'nm_content_box_space' => array(
+                'label'             => esc_html__('Content box padding', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'wrapper',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_content_box_space_margin' => array(
+                'label'             => esc_html__('Content box margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'wrapper',
@@ -175,7 +203,17 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_title_space' => array(
-                'label'             => esc_html__('Title Spacing', 'nm_divi'),
+                'label'             => esc_html__('Title box padding', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_title_space_margin' => array(
+                'label'             => esc_html__('Title box margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -185,7 +223,17 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_content_space' => array(
-                'label'             => esc_html__('Content Spacing', 'nm_divi'),
+                'label'             => esc_html__('Content box padding', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_content_space_margin' => array(
+                'label'             => esc_html__('Content box margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -195,7 +243,17 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_button_space' => array(
-                'label'             => esc_html__('Button Spacing', 'nm_divi'),
+                'label'             => esc_html__('Button box padding', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_button_space_margin' => array(
+                'label'             => esc_html__('Button box margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -208,6 +266,6 @@ trait GET_FIELDS
         ];
 
         // Return all values
-        return array_merge($title, $content, $image, $button, $custom_space);
+        return array_merge($content_box, $title, $content, $image, $button, $custom_space);
     }
 }

@@ -18,6 +18,52 @@ class NMDIVI_BLURB extends Component {
   static css(props) {
     let additionalCss = [];
 
+    ///// Content Box  /////
+    additionalCss.push([
+      {
+        selector: "%%order_class%% .featured-box-content",
+        declaration: `background-color: ${props.nm_content_box_bg};`,
+      },
+    ]);
+
+    //padding
+    if (props.nm_content_box_space) {
+      let content_box_space = props.nm_content_box_space;
+      content_box_space = content_box_space.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-content",
+          declaration: `padding: ${content_box_space[0]} ${content_box_space[1]} ${content_box_space[2]} ${content_box_space[3]};`,
+        },
+      ]);
+    }
+
+    // margin
+    if (props.nm_content_box_space_margin) {
+      let content_box_margin = props.nm_content_box_space_margin;
+      content_box_margin = content_box_margin.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-content",
+          declaration: `margin: ${content_box_margin[0]} ${content_box_margin[1]} ${content_box_margin[2]} ${content_box_margin[3]} !important;`,
+        },
+      ]);
+    }
+
+    additionalCss.push([
+      {
+        selector: "%%order_class%% .featured-box-content",
+        declaration: `max-width: ${props.nm_content_box_width}; margin: 0px auto;`,
+      },
+    ]);
+
+
     // Title BG
     if ("on|hover" === props.nm_title_bg__hover_enabled) {
       additionalCss.push([
@@ -35,13 +81,11 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // Title Space
+    // Title Padding
     let title_space = props.nm_title_space;
     title_space = title_space.split("|").filter((el) => {
       return el !== "";
     });
-
-    // console.log(`padding: ${space_val[0]} ${space_val[1]} ${space_val[2]} ${space_val[3]};`)
 
     additionalCss.push([
       {
@@ -49,6 +93,21 @@ class NMDIVI_BLURB extends Component {
         declaration: `padding: ${title_space[0]} ${title_space[1]} ${title_space[2]} ${title_space[3]};`,
       },
     ]);
+
+    // Title Margin
+    if (props.nm_title_space_margin) {
+      let title_margin = props.nm_title_space_margin;
+      title_margin = title_margin.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-title",
+          declaration: `margin: ${title_margin[0]} ${title_margin[1]} ${title_margin[2]} ${title_margin[3]};`,
+        },
+      ]);
+    }
 
     // Content
     if ("on|hover" === props.nm_content_bg__hover_enabled) {
@@ -68,17 +127,34 @@ class NMDIVI_BLURB extends Component {
     }
 
     // Content Space
-    let content_space = props.nm_content_space;
-    content_space = content_space.split("|").filter((el) => {
-      return el !== "";
-    });
+    if (props.nm_content_space) {
+      let content_space = props.nm_content_space;
+      content_space = content_space.split("|").filter((el) => {
+        return el !== "";
+      });
 
-    additionalCss.push([
-      {
-        selector: "%%order_class%% .featured-box-text",
-        declaration: `padding: ${content_space[0]} ${content_space[1]} ${content_space[2]} ${content_space[3]};`,
-      },
-    ]);
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-text",
+          declaration: `padding: ${content_space[0]} ${content_space[1]} ${content_space[2]} ${content_space[3]};`,
+        },
+      ]);
+    }
+
+    // Content Margin
+    if (props.nm_content_space_margin) {
+      let content_margin = props.nm_content_space_margin;
+      content_margin = content_margin.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-text",
+          declaration: `margin: ${content_margin[0]} ${content_margin[1]} ${content_margin[2]} ${content_margin[3]};`,
+        },
+      ]);
+    }
 
     // Image
     additionalCss.push([
@@ -110,17 +186,33 @@ class NMDIVI_BLURB extends Component {
     }
 
     // Button Space
-    let button_space = props.nm_button_space;
-    button_space = button_space.split("|").filter((el) => {
-      return el !== "";
-    });
+    if (props.nm_button_space) {
+      let button_space = props.nm_button_space;
+      button_space = button_space.split("|").filter((el) => {
+        return el !== "";
+      });
 
-    additionalCss.push([
-      {
-        selector: "%%order_class%% .featured-box-button",
-        declaration: `padding: ${button_space[0]} ${button_space[1]} ${button_space[2]} ${button_space[3]};`,
-      },
-    ]);
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-button",
+          declaration: `padding: ${button_space[0]} ${button_space[1]} ${button_space[2]} ${button_space[3]};`,
+        },
+      ]);
+    }
+
+    if (props.nm_button_space_margin) {
+      let button_margin = props.nm_button_space_margin;
+      button_margin = button_margin.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-button",
+          declaration: `margin: ${button_margin[0]} ${button_margin[1]} ${button_margin[2]} ${button_margin[3]};`,
+        },
+      ]);
+    }
 
     console.log(props);
 

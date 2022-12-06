@@ -57,12 +57,13 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			// Advanced
 			'advanced' => [
 				'toggles' => [
+					'nm_box' => esc_html__('Content Box', 'nm_divi'),
 					'nm_title' => esc_html__('Title', 'nm_divi'),
 					'nm_image' => esc_html__('Image', 'nm_divi'),
 					'nm_button' => esc_html__('Button', 'nm_divi'),
 					'nm_content' => esc_html__('Content', 'nm_divi'),
 					'custom_spacing'    => array(
-						'title'             => esc_html__('Custom Spacing', 'nm_divi'),
+						'title'             => esc_html__('Feature Box Spacing', 'nm_divi'),
 						'tabbed_subtoggles' => true,
 						'sub_toggles' => array(
 							'wrapper'   => array(
@@ -172,20 +173,111 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	// Render Css
 	public function render_css($render_slug)
 	{
+		// Feature Box
+		$content_box_bg = $this->props['nm_content_box_bg'];
+
+		// Image
+		$img_align = $this->props['nm_img_align'];
+
+		// Background
 		$title_bg = $this->props['nm_title_bg'];
 		$title_bg_hover = $this->props['nm_title_bg__hover'];
 		$content_bg = $this->props['nm_content_bg'];
 		$content_bg_hover = $this->props['nm_content_bg__hover'];
-		$button_full_width = $this->props['nm_btn_full_width'];
 		$button_bg = $this->props['nm_btn_bg'];
 		$button_bg_hover = $this->props['nm_btn_bg__hover'];
 
+		//Custom space
+		$content_box_space = $this->props['nm_content_box_space'];
+		$content_box_margin = $this->props['nm_content_box_space_margin'];
 
-
-		//custom space
 		$title_space = $this->props['nm_title_space'];
+		$title_margin = $this->props['nm_title_space_margin'];
 		$content_space = $this->props['nm_content_space'];
+		$content_margin = $this->props['nm_content_space_margin'];
 		$button_space = $this->props['nm_button_space'];
+		$button_margin = $this->props['nm_button_space_margin'];
+
+		// Width
+		$img_width = $this->props['nm_img_width'];
+		$content_box_width = $this->props['nm_content_box_width'];
+
+		// Image
+		if ('' !== $img_width) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-image img',
+				'declaration' => sprintf(
+					'max-width: %1$s;',
+					$img_width
+				),
+			));
+
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-image',
+				'declaration' => sprintf(
+					'text-align: %1$s;',
+					$img_align
+				),
+			));
+		}
+
+		///// Content Box /////
+		if ('' !== $content_box_bg) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					$content_box_bg
+				),
+			));
+		}
+
+		// padding
+		list($content_box_top_space, $content_box_right_space, $content_box_bottom_space, $content_box_left_space) = $this->get_custom_space($content_box_space);
+
+		if ('' !== $content_box_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$content_box_top_space,
+					$content_box_right_space,
+					$content_box_bottom_space,
+					$content_box_left_space
+				),
+			));
+		}
+
+		//margin
+		list($content_box_top_margin, $content_box_right_margin, $content_box_bottom_margin, $content_box_left_margin) = $this->get_custom_space($content_box_margin);
+
+		if ('' !== $content_box_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => sprintf(
+					'margin: %1$s %2$s %3$s %4$s !important;',
+					$content_box_top_margin,
+					$content_box_right_margin,
+					$content_box_bottom_margin,
+					$content_box_left_margin
+				),
+			));
+		}
+
+		if ('' !== $content_box_width) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => sprintf(
+					'max-width: %1$s;',
+					$content_box_width
+				),
+			));
+
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => 'margin: auto;',
+			));
+		}
 
 		///// Title  /////
 		if ('' !== $title_bg) {
@@ -219,6 +311,21 @@ class NMDIVI_BLURB extends ET_Builder_Module
 					$title_right_space,
 					$title_bottom_space,
 					$title_left_space
+				),
+			));
+		}
+
+		list($title_top_margin, $title_right_margin, $title_bottom_margin, $title_left_margin) = $this->get_custom_space($title_margin);
+
+		if ('' !== $title_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title',
+				'declaration' => sprintf(
+					'margin: %1$s %2$s %3$s %4$s;',
+					$title_top_margin,
+					$title_right_margin,
+					$title_bottom_margin,
+					$title_left_margin
 				),
 			));
 		}
@@ -270,22 +377,22 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		///// Button /////
+		list($content_top_margin, $content_right_margin, $content_bottom_margin, $content_left_margin) = $this->get_custom_space($content_margin);
 
-		list($button_top_space, $button_right_space, $button_bottom_space, $button_left_space) = $this->get_custom_space($button_space);
-
-		if ('' !== $button_space) {
+		if ('' !== $content_space) {
 			ET_Builder_Element::set_style($render_slug, array(
-				'selector'    => '%%order_class%% .featured-box-button',
+				'selector'    => '%%order_class%% .featured-box-content',
 				'declaration' => sprintf(
-					'padding: %1$s %2$s %3$s %4$s;',
-					$button_top_space,
-					$button_right_space,
-					$button_bottom_space,
-					$button_left_space
+					'margin: %1$s %2$s %3$s %4$s;',
+					$content_top_margin,
+					$content_right_margin,
+					$content_bottom_margin,
+					$content_left_margin
 				),
 			));
 		}
+
+		///// Button /////
 
 		if ('' !== $button_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
@@ -303,6 +410,36 @@ class NMDIVI_BLURB extends ET_Builder_Module
 				'declaration' => sprintf(
 					'background-color: %1$s;',
 					$button_bg_hover
+				),
+			));
+		}
+
+		list($button_top_space, $button_right_space, $button_bottom_space, $button_left_space) = $this->get_custom_space($button_space);
+
+		if ('' !== $button_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-button',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$button_top_space,
+					$button_right_space,
+					$button_bottom_space,
+					$button_left_space
+				),
+			));
+		}
+
+		list($button_top_margin, $button_right_margin, $button_bottom_margin, $button_left_margin) = $this->get_custom_space($button_margin);
+
+		if ('' !== $button_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-button',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$button_top_margin,
+					$button_right_margin,
+					$button_bottom_margin,
+					$button_left_margin
 				),
 			));
 		}

@@ -92,9 +92,9 @@ trait GET_ADV_FIELDS_CONFIG
                 'css'               => array(
                     'main'  => array(
                         'border_radii' => "%%order_class%% .featured-box-title",
-                        'border_radii_hover' => "%%order_class%% .featured-box-title:hover",
+                        'border_radii_hover' => "%%order_class%% .featured-box-title:hover .featured-box-title",
                         'border_styles' => "%%order_class%% .featured-box-title",
-                        'border_styles_hover' => "%%order_class%% .featured-box-title:hover",
+                        'border_styles_hover' => "%%order_class%% .featured-box-title:hover .featured-box-title",
                     )
                 ),
                 // 'label'    => esc_html__('Title Border', 'nm_divi'),

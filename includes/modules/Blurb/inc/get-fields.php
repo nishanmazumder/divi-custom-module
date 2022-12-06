@@ -152,6 +152,15 @@ trait GET_FIELDS
                 'toggle_slug'       => 'nm_button',
                 'tab_slug'        => 'advanced'
             ),
+            'nm_btn_bg' => array(
+                'label'           => esc_html__('Button Wrapper Background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'hover'           => 'tabs',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_button',
+                'tab_slug'        => 'advanced'
+            ),
         );
 
         $custom_space = [

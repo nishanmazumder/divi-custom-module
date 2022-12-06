@@ -7,31 +7,76 @@ import "./style.css";
 class NMDIVI_BLURB extends Component {
   static slug = "nmdivi_blurb";
 
+  // constructor(props){
+  //   super(props);
+
+  //   this.state = {
+  //     title_space: {}
+  //   }
+  // }
+
   static css(props) {
     let additionalCss = [];
 
-    // Title
+    // Title BG
+    if ("on|hover" === props.nm_title_bg__hover_enabled) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-title",
+          declaration: `background-color: ${props.nm_title_bg__hover};`,
+        },
+      ]);
+    } else {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-title",
+          declaration: `background-color: ${props.nm_title_bg};`,
+        },
+      ]);
+    }
+
+    // Title Space
+    let title_space = props.nm_title_space;
+    title_space = title_space.split("|").filter((el) => {
+      return el !== "";
+    });
+
+    // console.log(`padding: ${space_val[0]} ${space_val[1]} ${space_val[2]} ${space_val[3]};`)
+
     additionalCss.push([
       {
         selector: "%%order_class%% .featured-box-title",
-        declaration: `background-color: ${props.nm_title_bg};`,
+        declaration: `padding: ${title_space[0]} ${title_space[1]} ${title_space[2]} ${title_space[3]};`,
       },
     ]);
 
-    // if(props.title_bg_hover){
-    //   additionalCss.push([
-    //     {
-    //       selector: "%%order_class%% .featured-box-title",
-    //       declaration: `background-color: ${props.title_bg_hover};`,
-    //     },
-    //   ]);
-    // }
-
     // Content
+    if ("on|hover" === props.nm_content_bg__hover_enabled) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-text",
+          declaration: `background-color: ${props.nm_content_bg__hover};`,
+        },
+      ]);
+    } else {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-text",
+          declaration: `background-color: ${props.nm_content_bg} !important;`,
+        },
+      ]);
+    }
+
+    // Content Space
+    let content_space = props.nm_content_space;
+    content_space = content_space.split("|").filter((el) => {
+      return el !== "";
+    });
+
     additionalCss.push([
       {
-        selector: "%%order_class%% .featured-box-content",
-        declaration: `background-color: ${props.nm_content_bg} !important;`,
+        selector: "%%order_class%% .featured-box-text",
+        declaration: `padding: ${content_space[0]} ${content_space[1]} ${content_space[2]} ${content_space[3]};`,
       },
     ]);
 
@@ -47,20 +92,61 @@ class NMDIVI_BLURB extends Component {
       },
     ]);
 
-    // Button
-    // additionalCss.push([
-    //   {
-    //     selector: "%%order_class%% .featured-box-button a",
-    //     declaration: `background-color: ${props.nm_btn_bg};`,
-    //   },
-    // ]);
+    // Button BG
+    if ("on|hover" === props.nm_btn_bg__hover_enabled) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-button",
+          declaration: `background-color: ${props.nm_btn_bg__hover};`,
+        },
+      ]);
+    } else {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-button",
+          declaration: `background-color: ${props.nm_btn_bg};`,
+        },
+      ]);
+    }
+
+    // Button Space
+    let button_space = props.nm_button_space;
+    button_space = button_space.split("|").filter((el) => {
+      return el !== "";
+    });
+
+    additionalCss.push([
+      {
+        selector: "%%order_class%% .featured-box-button",
+        declaration: `padding: ${button_space[0]} ${button_space[1]} ${button_space[2]} ${button_space[3]};`,
+      },
+    ]);
 
     console.log(props);
 
     return additionalCss;
   }
 
-  render_button() {
+  // get_space = () => {
+  //   let title_space = this.props.nm_title_space
+
+  //   if('' !== title_space){
+  //     let space_val = title_space.split('|').filter(el => {
+  //       return el !== ''
+  //     })
+  //     space_val.forEach(data => {
+  //       this.setState((val) => {
+  //         return {val : val.data}
+  //       })
+  //     });
+  //     // var filtered = space_val.filter(function (el) {
+  //     //   return el !== '';
+  //     // });
+  //     // return console.log(filtered)
+  //   }
+  // }
+
+  render_button = () => {
     const utils = window.ET_Builder.API.Utils;
     const btn_text = this.props.nm_btn;
     const btn_url = this.props.nm_btn_url;
@@ -74,12 +160,17 @@ class NMDIVI_BLURB extends Component {
       et_pb_custom_button_icon: this.props.nm_button_icon,
     };
 
+    let button_full_width =
+      this.props.nm_btn_full_width === "on"
+        ? " display-block"
+        : " display-inline-block";
+
     if (!btn_text || !btn_url) return "";
 
     return (
       <div className="featured-box-button">
         <a
-          className={utils.classnames(btn_class)} //featured-box-readmore display-inline-block
+          className={utils.classnames(btn_class) + button_full_width} //featured-box-readmore display-inline-block
           href={btn_url}
           target={btn_target}
           rel={utils.linkRel(this.props.button_rel)}
@@ -89,7 +180,7 @@ class NMDIVI_BLURB extends Component {
         </a>
       </div>
     );
-  }
+  };
 
   render() {
     const title = this.props.nm_title;

@@ -173,10 +173,21 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	public function render_css($render_slug)
 	{
 		$title_bg = $this->props['nm_title_bg'];
-		// $title_bg_hover = $this->props['nm_title_bg__hover'];
+		$title_bg_hover = $this->props['nm_title_bg__hover'];
 		$content_bg = $this->props['nm_content_bg'];
-		// $content_bg_hover = $this->props['nm_content_bg__hover'];
+		$content_bg_hover = $this->props['nm_content_bg__hover'];
+		$button_full_width = $this->props['nm_btn_full_width'];
+		$button_bg = $this->props['nm_btn_bg'];
+		$button_bg_hover = $this->props['nm_btn_bg__hover'];
 
+
+
+		//custom space
+		$title_space = $this->props['nm_title_space'];
+		$content_space = $this->props['nm_content_space'];
+		$button_space = $this->props['nm_button_space'];
+
+		///// Title  /////
 		if ('' !== $title_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-title',
@@ -187,19 +198,46 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		// if ('' !== $title_bg_hover) {
-		// 	ET_Builder_Element::set_style($render_slug, array(
-		// 		'selector'    => '%%order_class%% .featured-box-title:hover',
-		// 		'declaration' => sprintf(
-		// 			'background-color: %1$s;',
-		// 			$title_bg_hover
-		// 		),
-		// 	));
-		// }
+		if ('' !== $title_bg_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title:hover',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					$title_bg_hover
+				),
+			));
+		}
 
+		list($title_top_space, $title_right_space, $title_bottom_space, $title_left_space) = $this->get_custom_space($title_space);
+
+		if ('' !== $title_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$title_top_space,
+					$title_right_space,
+					$title_bottom_space,
+					$title_left_space
+				),
+			));
+		}
+
+
+		if ('' !== $title_bg_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title:hover',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					$title_bg_hover
+				),
+			));
+		}
+
+		///// Content /////
 		if ('' !== $content_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
-				'selector'    => '%%order_class%% .featured-box-content',
+				'selector'    => '%%order_class%% .featured-box-text',
 				'declaration' => sprintf(
 					'background-color: %1$s;',
 					$content_bg
@@ -207,12 +245,74 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		// if ('' !== $content_bg_hover) {
+		if ('' !== $content_bg_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-text:hover',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					$content_bg_hover
+				),
+			));
+		}
+
+		list($content_top_space, $content_right_space, $content_bottom_space, $content_left_space) = $this->get_custom_space($content_space);
+
+		if ('' !== $content_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$content_top_space,
+					$content_right_space,
+					$content_bottom_space,
+					$content_left_space
+				),
+			));
+		}
+
+		///// Button /////
+
+		list($button_top_space, $button_right_space, $button_bottom_space, $button_left_space) = $this->get_custom_space($button_space);
+
+		if ('' !== $button_space) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-button',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$button_top_space,
+					$button_right_space,
+					$button_bottom_space,
+					$button_left_space
+				),
+			));
+		}
+
+		if ('' !== $button_bg) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-button',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					$button_bg
+				),
+			));
+		}
+
+		if ('' !== $button_bg_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-button:hover',
+				'declaration' => sprintf(
+					'background-color: %1$s;',
+					$button_bg_hover
+				),
+			));
+		}
+
+		// if('on' === $button_full_width){
 		// 	ET_Builder_Element::set_style($render_slug, array(
-		// 		'selector'    => '%%order_class%% .featured-box-content:hover',
+		// 		'selector'    => '%%order_class%% .featured-box-button a',
 		// 		'declaration' => sprintf(
-		// 			'background-color: %1$s;',
-		// 			$content_bg_hover
+		// 			'display: block;',
+		// 			$button_bg
 		// 		),
 		// 	));
 		// }
@@ -221,20 +321,29 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		// 	'selector'    => '%%order_class%% .featured-box-title',
 		// 	'declaration' => sprintf('background-color:%s;', $title_bg)
 		// ));
-
 	}
+
+
 
 	public function get_transition_fields_css_props()
 	{
 		$fields = parent::get_transition_fields_css_props();
 
 		$title_bg = '%%order_class%% .featured-box-title';
-		//$content_bg = '%%order_class%% .featured-box-content';
+		$content_bg = '%%order_class%% .featured-box-text';
+		$button_bg = '%%order_class%% .featured-box-button';
 
-        $fields['nm_title_bg'] = array('background-color' => $title_bg);
-       // $fields['nm_content_bg'] = array('background-color' => $content_bg);
+		$fields['nm_title_bg'] = array('background-color' => $title_bg);
+		$fields['nm_content_bg'] = array('background-color' => $content_bg);
+		$fields['nm_btn_bg'] = array('background-color' => $button_bg);
 
 		return $fields;
+	}
+
+	// Get custom space
+	public function get_custom_space(string $space)
+	{
+		return explode('|', $space);
 	}
 
 	// Image block
@@ -285,7 +394,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		$button_width = ("on" === $this->props['nm_btn_full_width']) ? "display-block" : "display-inline-block";
 
 		// Render button
-		$button = $this->render_button( array(
+		$button = $this->render_button(array(
 			'button_text'      => $btn_txt,
 			'button_url'       => $btn_url,
 			'url_new_window'   => $btn_target,
@@ -294,7 +403,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			'custom_icon'      => $btn_icon,
 			'has_wrapper'         => false,
 			'button_classname'    => array('featured-box-readmore', $button_width),
-		) );
+		));
 
 		return sprintf(
 			'<div class="featured-box-button">

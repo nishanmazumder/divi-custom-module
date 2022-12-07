@@ -12,120 +12,6 @@ trait GET_FIELDS
 {
     static function get_fields()
     {
-        $content_box = [
-            'nm_content_box_bg' => array(
-                'label'           => esc_html__('Content box Background', 'nm_divi'),
-                'type'            => 'color-alpha',
-                'option_category' => 'basic_option',
-                'description'     => esc_html__('', 'nm_divi'),
-                'toggle_slug'     => 'nm_box',
-                'tab_slug'        => 'advanced'
-            ),
-            'nm_content_box_width' => array(
-                'label'             => esc_html__('Content box width', 'nm_divi'),
-                'type'              => 'range',
-                'toggle_slug'       => 'nm_box',
-                'tab_slug'          => 'advanced',
-                'default'           => 'auto',
-                'default'           => '500px',
-                // 'allowed_units'     => array('%'),
-                'allowed_units'     => array('px'),
-                'range_settings'    => array(
-                    'min'  => '0',
-                    'max'  => '500',
-                    'step' => '10'
-                ),
-                // 'responsive'        => true,
-                // 'mobile_options'    => true,
-                'description'     => esc_html__('', 'nm_divi')
-            ),
-            'nm_content_box_height' => array(
-                'label'             => esc_html__('Content box height', 'nm_divi'),
-                'type'              => 'range',
-                'toggle_slug'       => 'nm_box',
-                'tab_slug'          => 'advanced',
-                'default'           => '400px',
-                'allowed_units'     => array('px'),
-                'range_settings'    => array(
-                    'min'  => '0',
-                    'max'  => '400',
-                    'step' => '10'
-                ),
-                // 'responsive'        => true,
-                // 'mobile_options'    => true,
-                'description'     => esc_html__('', 'nm_divi')
-            ),
-            'nm_content_box_overlap'  => array(
-                'label'             => esc_html__('Content box overlap', 'nm_divi'),
-                'type'              => 'yes_no_button',
-                'options'           => array(
-                    'off' => esc_html__('Off', 'divi_flash'),
-                    'on'  => esc_html__('On', 'divi_flash')
-                ),
-                'default'           => 'off',
-                'toggle_slug'       => 'nm_box',
-                'tab_slug'        => 'advanced'
-            ),
-            'nm_content_box_move_top' => array(
-                'label'             => esc_html__('Move top', 'nm_divi'),
-                'type'              => 'range',
-                'toggle_slug'       => 'nm_box',
-                'tab_slug'          => 'advanced',
-                'default'           => '50%',
-                'allowed_units'     => array('%'),
-                'range_settings'    => array(
-                    'min'  => '0',
-                    'max'  => '100',
-                    'step' => '1'
-                ),
-                // 'responsive'        => true,
-                // 'mobile_options'    => true,
-                'description'     => esc_html__('', 'nm_divi'),
-                'show_if'         => array(
-                    'nm_content_box_overlap'     => 'on'
-                )
-            ),
-        ];
-
-        $title = array(
-            'nm_title' => array(
-                'label'           => esc_html__('Title', 'nm_divi'),
-                'type'            => 'text',
-                'option_category' => 'basic_option',
-                'description'     => esc_html__('', 'nm_divi'),
-                'toggle_slug'     => 'nm_title',
-            ),
-            'nm_title_bg' => array(
-                'label'           => esc_html__('Title Background', 'nm_divi'),
-                'type'            => 'color-alpha',
-                'hover'           => 'tabs',
-                'option_category' => 'basic_option',
-                'description'     => esc_html__('', 'nm_divi'),
-                'toggle_slug'     => 'nm_title',
-                'tab_slug'        => 'advanced'
-            )
-        );
-
-        $content = array(
-            'nm_content' => array(
-                'label'           => esc_html__('Content', 'nm_divi'),
-                'type'            => 'tiny_mce',
-                'option_category' => 'basic_option',
-                'description'     => esc_html__('', 'nm_divi'),
-                'toggle_slug'     => 'nm_content',
-                'dynamic_content' => 'text'
-            ),
-
-            'nm_content_bg' => array(
-                'label'           => esc_html__('Content Background', 'nm_divi'),
-                'type'            => 'color-alpha',
-                'option_category' => 'basic_option',
-                'description'     => esc_html__('', 'nm_divi'),
-                'toggle_slug'     => 'nm_content',
-                'tab_slug'        => 'advanced',
-                'hover'           => 'tabs',
-            ),
-        );
 
         $image = array(
             'nm_img' => array(
@@ -169,7 +55,75 @@ trait GET_FIELDS
                 'responsive'        => true,
                 'mobile_options'    => true,
                 'description'     => esc_html__('', 'nm_divi')
+            ),
+            'nm_img_bg' => array(
+                'label'           => esc_html__('Image Background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'hover'           => 'tabs',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_image',
+                'tab_slug'        => 'advanced'
             )
+        );
+
+        $title = array(
+            'nm_title' => array(
+                'label'           => esc_html__('Title', 'nm_divi'),
+                'type'            => 'text',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_content',
+            ),
+            'nm_title_bg' => array(
+                'label'           => esc_html__('Title Background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'hover'           => 'tabs',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_title',
+                'tab_slug'        => 'advanced'
+            )
+        );
+
+        $subtitle = array(
+            'nm_sub_title' => array(
+                'label'           => esc_html__('Sub title', 'nm_divi'),
+                'type'            => 'text',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_content',
+            ),
+            'nm_sub_title_bg' => array(
+                'label'           => esc_html__('Sub title Background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'hover'           => 'tabs',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_sub_title',
+                'tab_slug'        => 'advanced'
+            )
+        );
+
+        $content = array(
+            'nm_content' => array(
+                'label'           => esc_html__('Content', 'nm_divi'),
+                'type'            => 'tiny_mce',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_content',
+                'dynamic_content' => 'text'
+            ),
+
+            'nm_content_bg' => array(
+                'label'           => esc_html__('Content Background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_content',
+                'tab_slug'        => 'advanced',
+                'hover'           => 'tabs',
+            ),
         );
 
         $button = array(
@@ -200,14 +154,6 @@ trait GET_FIELDS
                 'toggle_slug'     => 'nm_button',
                 'description'     => esc_html__('', 'nm_divi'),
             ),
-            // 'nm_btn_bg' => array(
-            //     'label'           => esc_html__('Button Background', 'nm_divi'),
-            //     'type'            => 'color-alpha',
-            //     'option_category' => 'basic_option',
-            //     'description'     => esc_html__('', 'nm_divi'),
-            //     'toggle_slug'     => 'nm_button',
-            //     'tab_slug'        => 'advanced'
-            // ),
             'nm_btn_full_width'  => array(
                 'label'             => esc_html__('Enable Button Fullwidth', 'nm_divi'),
                 'type'              => 'yes_no_button',
@@ -230,9 +176,104 @@ trait GET_FIELDS
             ),
         );
 
+        $content_box = [
+            'nm_content_box_bg' => array(
+                'label'           => esc_html__('Content wrapper background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_box',
+                'tab_slug'        => 'advanced'
+            ),
+            'nm_content_box_width' => array(
+                'label'             => esc_html__('Content wrapper width', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'          => 'advanced',
+                'default'           => '50%',
+                'default'           => '100%',
+                // 'allowed_units'     => array('%'),
+                'allowed_units'     => array('%'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '100',
+                    'step' => '5'
+                ),
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi')
+            ),
+            // 'nm_content_box_height' => array(
+            //     'label'             => esc_html__('Content wrapper height', 'nm_divi'),
+            //     'type'              => 'range',
+            //     'toggle_slug'       => 'nm_box',
+            //     'tab_slug'          => 'advanced',
+            //     'default'           => '400px',
+            //     'allowed_units'     => array('px'),
+            //     'range_settings'    => array(
+            //         'min'  => '0',
+            //         'max'  => '400',
+            //         'step' => '10'
+            //     ),
+            //     // 'responsive'        => true,
+            //     // 'mobile_options'    => true,
+            //     'description'     => esc_html__('', 'nm_divi')
+            // ),
+            'nm_content_box_overlap'  => array(
+                'label'             => esc_html__('Content wrapper overlap', 'nm_divi'),
+                'type'              => 'yes_no_button',
+                'options'           => array(
+                    'off' => esc_html__('Off', 'divi_flash'),
+                    'on'  => esc_html__('On', 'divi_flash')
+                ),
+                'default'           => 'off',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'        => 'advanced'
+            ),
+            'nm_content_box_move_top_bottom' => array(
+                'label'             => esc_html__('Move top/bottom', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'          => 'advanced',
+                'default'           => '50%',
+                'allowed_units'     => array('%'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '100',
+                    'step' => '1'
+                ),
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi'),
+                'show_if'         => array(
+                    'nm_content_box_overlap'     => 'on'
+                )
+            ),
+
+            'nm_content_box_move_left_right' => array(
+                'label'             => esc_html__('Move left/right', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'          => 'advanced',
+                'default'           => '50%',
+                'allowed_units'     => array('%'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '100',
+                    'step' => '1'
+                ),
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi'),
+                'show_if'         => array(
+                    'nm_content_box_overlap'     => 'on'
+                )
+            ),
+        ];
+
         $custom_space = [
             'nm_content_box_space' => array(
-                'label'             => esc_html__('Content padding', 'nm_divi'),
+                'label'             => esc_html__('Content wrapper padding', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'wrapper',
@@ -242,7 +283,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_content_box_space_margin' => array(
-                'label'             => esc_html__('Content margin', 'nm_divi'),
+                'label'             => esc_html__('Content wrapper margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'wrapper',
@@ -251,6 +292,27 @@ trait GET_FIELDS
                 'responsive'        => true,
                 'mobile_options'    => true
             ),
+            'nm_img_space' => array(
+                'label'             => esc_html__('Image padding', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_img_margin' => array(
+                'label'             => esc_html__('Image margin', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+
             'nm_title_space' => array(
                 'label'             => esc_html__('Title padding', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
@@ -263,6 +325,26 @@ trait GET_FIELDS
             ),
             'nm_title_space_margin' => array(
                 'label'             => esc_html__('Title margin', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_sub_title_space' => array(
+                'label'             => esc_html__('Sub Title padding', 'nm_divi'),
+                'toggle_slug'       => 'custom_spacing',
+                'tab_slug'          => 'advanced',
+                'sub_toggle'        => 'content',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_sub_title_margin' => array(
+                'label'             => esc_html__('Sub Title margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -315,6 +397,6 @@ trait GET_FIELDS
         ];
 
         // Return all values
-        return array_merge($content_box, $title, $content, $image, $button, $custom_space);
+        return array_merge($image, $title, $subtitle, $content, $button, $content_box, $custom_space);
     }
 }

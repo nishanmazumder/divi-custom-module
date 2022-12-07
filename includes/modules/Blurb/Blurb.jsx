@@ -10,6 +10,15 @@ class NMDIVI_BLURB extends Component {
   // constructor(props) {
   //   super(props);
 
+  //   const test_title = props.nm_title
+
+  //   this.state = {
+  //     title: "title"
+  //   }
+
+  //   console.log(this.state.title)
+  //   // console.log(this.state.title)
+
   //   // let field = this.props.dynamic['nm_content'].render("full");
 
   //   // check_propst_dynamic = () => {
@@ -72,27 +81,101 @@ class NMDIVI_BLURB extends Component {
     ]);
 
     // Content box height
-    additionalCss.push([
-      {
-        selector: "%%order_class%% .featured-box-content",
-        declaration: `max-height: ${props.nm_content_box_height};`,
-      },
-    ]);
+    // additionalCss.push([
+    //   {
+    //     selector: "%%order_class%% .featured-box-content",
+    //     declaration: `max-height: ${props.nm_content_box_height};`,
+    //   },
+    // ]);
 
     // Content box position
-    if('on' === props.nm_content_box_overlap){
+    if ("on" === props.nm_content_box_overlap) {
       additionalCss.push([
         {
-          selector : "%%order_class%% .featured-box-content",
-          declaration: `position: absolute; top: 0%;`
+          selector: "%%order_class%% .featured-box-content",
+          declaration: `position: absolute; top: 10%; left: 10%;`,
         },
-        {
-          selector : "%%order_class%% .featured-box-content",
-          declaration: `top: ${props.nm_content_box_move_top};`,
-        }
       ]);
     }
 
+    // position
+    if (props.nm_content_box_move_top_bottom) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-content",
+          declaration: `top: ${props.nm_content_box_move_top_bottom};`,
+        },
+      ]);
+    }
+
+    if (props.nm_content_box_move_left_right) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-content",
+          declaration: `left: ${props.nm_content_box_move_left_right};`,
+        },
+      ]);
+    }
+
+    // Image
+    if ("on|hover" === props.nm_img_bg__hover_enabled) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-image",
+          declaration: `background-color: ${props.nm_img_bg__hover};`,
+        },
+      ]);
+    } else {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-image",
+          declaration: `background-color: ${props.nm_img_bg};`,
+        },
+      ]);
+    }
+
+    // Padding
+
+    if (props.nm_img_space) {
+      let image_space = props.nm_img_space;
+      image_space = image_space.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-image",
+          declaration: `padding: ${image_space[0]} ${image_space[1]} ${image_space[2]} ${image_space[3]};`,
+        },
+      ]);
+    }
+
+    if (props.nm_img_margin) {
+      let image_margin = props.nm_img_margin;
+      image_margin = image_margin.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-image",
+          declaration: `margin: ${image_margin[0]} ${image_margin[1]} ${image_margin[2]} ${image_margin[3]};`,
+        },
+      ]);
+    }
+
+    // {
+    //   selector: "%%order_class%% .featured-box-content",
+    //   declaration: `bottom: ${props.nm_content_box_move_bottom};`,
+    // },
+    // {
+    //   selector: "%%order_class%% .featured-box-content",
+    //   declaration: `left: ${props.nm_content_box_move_left};`,
+    // },
+    // {
+    //   selector: "%%order_class%% .featured-box-content",
+    //   declaration: `right: ${props.nm_content_box_move_right};`,
+    // },
 
     ////// Title //////
     if ("on|hover" === props.nm_title_bg__hover_enabled) {
@@ -139,6 +222,50 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
+    ////// Subtitle //////
+    if ("on|hover" === props.nm_sub_title_bg__hover_enabled) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-subtitle",
+          declaration: `background-color: ${props.nm_sub_title_bg__hover};`,
+        },
+      ]);
+    } else {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-subtitle",
+          declaration: `background-color: ${props.nm_sub_title_bg};`,
+        },
+      ]);
+    }
+
+    if (props.nm_sub_title_space) {
+      let subtitle_space = props.nm_sub_title_space;
+      subtitle_space = subtitle_space.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-subtitle",
+          declaration: `padding: ${subtitle_space[0]} ${subtitle_space[1]} ${subtitle_space[2]} ${subtitle_space[3]};`,
+        },
+      ]);
+    }
+
+    if (props.nm_sub_title_margin) {
+      let subtitle_margin = props.nm_sub_title_margin;
+      subtitle_margin = subtitle_margin.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-subtitle",
+          declaration: `margin: ${subtitle_margin[0]} ${subtitle_margin[1]} ${subtitle_margin[2]} ${subtitle_margin[3]};`,
+        },
+      ]);
+    }
 
     ///// Content /////
     if ("on|hover" === props.nm_content_bg__hover_enabled) {
@@ -293,7 +420,11 @@ class NMDIVI_BLURB extends Component {
     return (
       <div className="featured-box-button">
         <a
-          className={utils.classnames(btn_class) + button_full_width + " featured-box-readmore"} //featured-box-readmore display-inline-block
+          className={
+            utils.classnames(btn_class) +
+            button_full_width +
+            " featured-box-readmore"
+          } //featured-box-readmore display-inline-block
           href={btn_url}
           target={btn_target}
           rel={utils.linkRel(this.props.button_rel)}
@@ -308,9 +439,9 @@ class NMDIVI_BLURB extends Component {
   render() {
     // const content = this.props.content();
     const title = this.props.nm_title;
+    const subtitle = this.props.nm_sub_title;
     // const content = this.render_content(this.props, "nm_content");
-    const content = this.props.dynamic['nm_content'].render("full");
-    // const content = this.nm_content.render('full');
+    const content = this.props.dynamic["nm_content"].render("full");
     const img = this.props.nm_img;
     const img_alt = this.props.nm_img_alt_text;
 
@@ -326,6 +457,9 @@ class NMDIVI_BLURB extends Component {
             <h3 className="featured-box-title">
               <span>{title}</span>
             </h3>
+            <h5 className="featured-box-subtitle">
+              <span>{subtitle}</span>
+            </h5>
             <div className="featured-box-text">{content}</div>
             {this.render_button()}
           </div>

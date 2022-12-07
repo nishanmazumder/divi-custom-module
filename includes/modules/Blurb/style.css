@@ -1,11 +1,23 @@
-.featured-box{
-    width: 100% !important;
+.featured-box {
+  width: 100% !important;
+}
+/* Border */
+.featured-box > * {
+  border-width: 0px;
+  border-style: solid;
+  border-color: #333;
+}
+.featured-box-content *,.featured-box-image *, .featured-box-title *, .featured-box-subtitle *, .featured-box-text * {
+  border-width: 0px;
+  border-style: solid;
+  border-color: #333;
 }
 
-.display-block{
-    display: block;
+/* Display */
+.display-block {
+  display: block;
 }
 
-.display-inline-block{
-    display: inline-block;
+.display-inline-block {
+  display: inline-block;
 }

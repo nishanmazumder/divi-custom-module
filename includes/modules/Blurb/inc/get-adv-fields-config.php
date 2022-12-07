@@ -43,6 +43,31 @@ trait GET_ADV_FIELDS_CONFIG
                 ),
             ),
 
+            // Subtitle
+            'nm_sub_title'   => array(
+                'label'         => esc_html__('Sub Title', 'nm_divi'),
+                'toggle_slug'   => 'nm_sub_title',
+                'tab_slug'        => 'advanced',
+                'line_height' => array(
+                    'default' => '1em',
+                ),
+                'font_size' => array(
+                    'default' => '20px',
+                ),
+                'font-weight' => array(
+                    'default' => 'normal'
+                ),
+                'css'      => array(
+                    'main' => " %%order_class%% .featured-box-subtitle",
+                    //'hover' => "%%order_class%% .featured-box-title:hover .featured-box-title",
+                    'hover' => "%%order_class%% .featured-box-subtitle:hover",
+                    'important' => 'all',
+                ),
+                'header_level' => array(
+                    'default' => 'h5',
+                ),
+            ),
+
             // Content
             'nm_content'   => array(
                 'label'         => esc_html__('Content', 'nm_divi'),
@@ -88,6 +113,21 @@ trait GET_ADV_FIELDS_CONFIG
 
         $advanced_fields['borders'] = array(
             'default'               => array(),
+
+            'nm_box'         => array(
+                'css'               => array(
+                    'main'  => array(
+                        'border_radii' => "%%order_class%% .featured-box-content",
+                        'border_radii_hover' => "%%order_class%% .featured-box-content:hover .featured-box-content",
+                        'border_styles' => "%%order_class%% .featured-box-content",
+                        'border_styles_hover' => "%%order_class%% .featured-box-content:hover .featured-box-content",
+                    )
+                ),
+                // 'label'    => esc_html__('Title Border', 'nm_divi'),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_box',
+            ),
+
             'nm_title'         => array(
                 'css'               => array(
                     'main'  => array(
@@ -102,13 +142,27 @@ trait GET_ADV_FIELDS_CONFIG
                 'toggle_slug'     => 'nm_title',
             ),
 
+            'nm_sub_title'         => array(
+                'css'               => array(
+                    'main'  => array(
+                        'border_radii' => "%%order_class%% .featured-box-subtitle",
+                        'border_radii_hover' => "%%order_class%% .featured-box-subtitle:hover .featured-box-subtitle",
+                        'border_styles' => "%%order_class%% .featured-box-subtitle",
+                        'border_styles_hover' => "%%order_class%% .featured-box-subtitle:hover .featured-box-subtitle",
+                    )
+                ),
+                // 'label'    => esc_html__('Title Border', 'nm_divi'),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_sub_title',
+            ),
+
             'nm_content'         => array(
                 'css'               => array(
                     'main'  => array(
-                        'border_radii' => "%%order_class%% .featured-box-content",
-                        'border_radii_hover' => "%%order_class%% .featured-box-content:hover",
-                        'border_styles' => "%%order_class%% .featured-box-content",
-                        'border_styles_hover' => "%%order_class%% .featured-box-content:hover",
+                        'border_radii' => "%%order_class%% .featured-box-text",
+                        'border_radii_hover' => "%%order_class%% .featured-box-text:hover .featured-box-text",
+                        'border_styles' => "%%order_class%% .featured-box-text",
+                        'border_styles_hover' => "%%order_class%% .featured-box-text:hover .featured-box-text",
                     )
                 ),
                 // 'label'    => esc_html__('Title Border', 'nm_divi'),
@@ -125,7 +179,21 @@ trait GET_ADV_FIELDS_CONFIG
                         'border_styles_hover' => "%%order_class%% .featured-box-image:hover img",
                     )
                 ),
-                // 'label'    => esc_html__('Image Border', 'nm_divi'),
+                'label'    => esc_html__('Image Border', 'nm_divi'),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_image',
+            ),
+
+            'nm_image_box'         => array(
+                'css'               => array(
+                    'main'  => array(
+                        'border_radii' => "%%order_class%% .featured-box-image",
+                        'border_radii_hover' => "%%order_class%% .featured-box-image:hover",
+                        'border_styles' => "%%order_class%% .featured-box-image",
+                        'border_styles_hover' => "%%order_class%% .featured-box-image:hover",
+                    )
+                ),
+                'label'    => esc_html__('Image wrapper border', 'nm_divi'),
                 'tab_slug'        => 'advanced',
                 'toggle_slug'     => 'nm_image',
             ),
@@ -133,16 +201,91 @@ trait GET_ADV_FIELDS_CONFIG
             'nm_button'         => array(
                 'css'               => array(
                     'main'  => array(
-                        'border_radii' => "%%order_class%% .featured-box-button a",
-                        'border_radii_hover' => "%%order_class%% .featured-box-button:hover a",
-                        'border_styles' => "%%order_class%% .featured-box-button a",
-                        'border_styles_hover' => "%%order_class%% .featured-box-button:hover a",
+                        'border_radii' => "%%order_class%% .featured-box-button",
+                        'border_radii_hover' => "%%order_class%% .featured-box-button:hover",
+                        'border_styles' => "%%order_class%% .featured-box-button",
+                        'border_styles_hover' => "%%order_class%% .featured-box-button:hover",
                     )
                 ),
                 // 'label'    => esc_html__('Title Border', 'nm_divi'),
                 'tab_slug'        => 'advanced',
                 'toggle_slug'     => 'nm_button',
             ),
+        );
+
+        $advanced_fields['box_shadow'] = array(
+            'default'               => true,
+
+            'nm_content_box'             => array(
+                'label'    => esc_html__('Content wrapper Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-content",
+                    'hover' => "%%order_class%% .featured-box-content:hover .featured-box-content",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_box',
+            ),
+
+            'nm_img_box'             => array(
+                'label'    => esc_html__('Image Box Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-image",
+                    'hover' => "%%order_class%% .featured-box-image:hover .featured-box-image",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_image',
+            ),
+
+            'nm_img'             => array(
+                'label'    => esc_html__('Image Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-image img",
+                    'hover' => "%%order_class%% .featured-box-image:hover img",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_image',
+            ),
+
+            'nm_title'             => array(
+                'label'    => esc_html__('Title Box Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-title",
+                    'hover' => "%%order_class%% .featured-box-title:hover .featured-box-title",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_title',
+            ),
+
+            'nm_sub_title'             => array(
+                'label'    => esc_html__('Sub Title Box Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-subtitle",
+                    'hover' => "%%order_class%% .featured-box-subtitle:hover .featured-box-subtitle",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_sub_title',
+            ),
+
+            'nm_content'             => array(
+                'label'    => esc_html__('Content Box Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-text",
+                    'hover' => "%%order_class%% .featured-box-text:hover .featured-box-text",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_content',
+            ),
+
+            'nm_btn'             => array(
+                'label'    => esc_html__('Button Box Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-button",
+                    'hover' => "%%order_class%% .featured-box-button:hover .featured-box-button",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_button',
+            ),
+
         );
 
         $advanced_fields['filters'] = array(

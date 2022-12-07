@@ -135,33 +135,65 @@ class NMDIVI_BLURB extends Component {
     }
 
     // Padding
+    if ("on|hover" === props.nm_img_space__hover_enabled) {
+      if (props.nm_img_space__hover) {
+        let image_space_hover = props.nm_img_space__hover;
+        image_space_hover = image_space_hover.split("|").filter((el) => {
+          return el !== "";
+        });
 
-    if (props.nm_img_space) {
-      let image_space = props.nm_img_space;
-      image_space = image_space.split("|").filter((el) => {
-        return el !== "";
-      });
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-image",
+            declaration: `padding: ${image_space_hover[0]} ${image_space_hover[1]} ${image_space_hover[2]} ${image_space_hover[3]};`,
+          },
+        ]);
+      }
+    } else {
+      if (props.nm_img_space) {
+        let image_space = props.nm_img_space;
+        image_space = image_space.split("|").filter((el) => {
+          return el !== "";
+        });
 
-      additionalCss.push([
-        {
-          selector: "%%order_class%% .featured-box-image",
-          declaration: `padding: ${image_space[0]} ${image_space[1]} ${image_space[2]} ${image_space[3]};`,
-        },
-      ]);
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-image",
+            declaration: `padding: ${image_space[0]} ${image_space[1]} ${image_space[2]} ${image_space[3]};`,
+          },
+        ]);
+      }
     }
 
-    if (props.nm_img_margin) {
-      let image_margin = props.nm_img_margin;
-      image_margin = image_margin.split("|").filter((el) => {
-        return el !== "";
-      });
+    // margin
+    if ("on|hover" === props.nm_img_margin__hover_enabled) {
+      if (props.nm_img_margin__hover) {
+        let image_margin_hover = props.nm_img_margin__hover;
+        image_margin_hover = image_margin_hover.split("|").filter((el) => {
+          return el !== "";
+        });
 
-      additionalCss.push([
-        {
-          selector: "%%order_class%% .featured-box-image",
-          declaration: `margin: ${image_margin[0]} ${image_margin[1]} ${image_margin[2]} ${image_margin[3]};`,
-        },
-      ]);
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-image",
+            declaration: `margin: ${image_margin_hover[0]} ${image_margin_hover[1]} ${image_margin_hover[2]} ${image_margin_hover[3]};`,
+          },
+        ]);
+      }
+    } else {
+      if (props.nm_img_margin) {
+        let image_margin = props.nm_img_margin;
+        image_margin = image_margin.split("|").filter((el) => {
+          return el !== "";
+        });
+
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-image",
+            declaration: `margin: ${image_margin[0]} ${image_margin[1]} ${image_margin[2]} ${image_margin[3]};`,
+          },
+        ]);
+      }
     }
 
     // {
@@ -194,33 +226,71 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // Title Padding
-    let title_space = props.nm_title_space;
-    title_space = title_space.split("|").filter((el) => {
-      return el !== "";
-    });
+      // Title Padding
 
-    additionalCss.push([
-      {
-        selector: "%%order_class%% .featured-box-title",
-        declaration: `padding: ${title_space[0]} ${title_space[1]} ${title_space[2]} ${title_space[3]};`,
-      },
-    ]);
+    if ("on|hover" === props.nm_title_space__hover_enabled) {
+      if (props.nm_title_space__hover) {
+        let title_space_hover = props.nm_title_space__hover;
+        title_space_hover = title_space_hover.split("|").filter((el) => {
+          return el !== "";
+        });
 
-    // Title Margin
-    if (props.nm_title_space_margin) {
-      let title_margin = props.nm_title_space_margin;
-      title_margin = title_margin.split("|").filter((el) => {
-        return el !== "";
-      });
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-title",
+            declaration: `padding: ${title_space_hover[0]} ${title_space_hover[1]} ${title_space_hover[2]} ${title_space_hover[3]};`,
+          },
+        ]);
+      }
+    } else {
+      if (props.nm_title_space) {
+        let title_space = props.nm_title_space;
+        title_space = title_space.split("|").filter((el) => {
+          return el !== "";
+        });
 
-      additionalCss.push([
-        {
-          selector: "%%order_class%% .featured-box-title",
-          declaration: `margin: ${title_margin[0]} ${title_margin[1]} ${title_margin[2]} ${title_margin[3]};`,
-        },
-      ]);
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-title",
+            declaration: `padding: ${title_space[0]} ${title_space[1]} ${title_space[2]} ${title_space[3]};`,
+          },
+        ]);
+      }
     }
+
+    // Title Margin nm_title_space_margin__hover
+
+    if ("on|hover" === props.nm_title_space_margin__hover_enabled) {
+      if (props.nm_title_space_margin__hover) {
+        let title_margin_hover = props.nm_title_space_margin__hover;
+        title_margin_hover = title_margin_hover.split("|").filter((el) => {
+          return el !== "";
+        });
+
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-title",
+            declaration: `margin: ${title_margin_hover[0]} ${title_margin_hover[1]} ${title_margin_hover[2]} ${title_margin_hover[3]};`,
+          },
+        ]);
+      }
+    } else {
+      if (props.nm_title_space_margin) {
+        let title_margin = props.nm_title_space_margin;
+        title_margin = title_margin.split("|").filter((el) => {
+          return el !== "";
+        });
+
+        additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-title",
+            declaration: `margin: ${title_margin[0]} ${title_margin[1]} ${title_margin[2]} ${title_margin[3]};`,
+          },
+        ]);
+      }
+    }
+
+
 
     ////// Subtitle //////
     if ("on|hover" === props.nm_sub_title_bg__hover_enabled) {

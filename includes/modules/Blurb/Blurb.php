@@ -220,13 +220,19 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		$content_box_margin = $this->props['nm_content_box_space_margin'];
 
 		$image_space = $this->props['nm_img_space'];
+		$image_space_hover = $this->props['nm_img_space__hover'];
 		$image_margin = $this->props['nm_img_margin'];
+		$image_margin_hover = $this->props['nm_img_margin__hover'];
 
 		$title_space = $this->props['nm_title_space'];
+		$title_space_hover = $this->props['nm_title_space__hover'];
 		$title_margin = $this->props['nm_title_space_margin'];
+		$title_margin_hover = $this->props['nm_title_space_margin__hover'];
 
 		$subtitle_space = $this->props['nm_sub_title_space'];
+		$subtitle_space_hover = $this->props['nm_sub_title_space'];
 		$subtitle_margin = $this->props['nm_sub_title_margin'];
+		$subtitle_margin_hover = $this->props['nm_sub_title_margin'];
 
 		$content_space = $this->props['nm_content_space'];
 		$content_margin = $this->props['nm_content_space_margin'];
@@ -285,6 +291,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
+
+
 		// padding
 		list($img_box_top_space, $img_box_right_space, $img_box_bottom_space, $img_box_left_space) = $this->get_custom_space($image_space);
 
@@ -301,6 +309,22 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
+		// padding hover
+		list($img_box_top_hover, $img_box_right_hover, $img_box_bottom_hover, $img_box_left_hover) = $this->get_custom_space($image_space_hover);
+
+		if ('' !== $image_space_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-image:hover',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$img_box_top_hover,
+					$img_box_right_hover,
+					$img_box_bottom_hover,
+					$img_box_left_hover
+				),
+			));
+		}
+
 		// margin
 		list($img_box_top_margin, $img_box_right_margin, $img_box_bottom_margin, $img_box_left_margin) = $this->get_custom_space($image_margin);
 
@@ -313,6 +337,22 @@ class NMDIVI_BLURB extends ET_Builder_Module
 					$img_box_right_margin,
 					$img_box_bottom_margin,
 					$img_box_left_margin
+				),
+			));
+		}
+
+		// margin hover
+		list($img_box_top_margin_hover, $img_box_right_margin_hover, $img_box_bottom_margin_hover, $img_box_left_margin_hover) = $this->get_custom_space($image_margin_hover);
+
+		if ('' !== $image_margin_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-image:hover',
+				'declaration' => sprintf(
+					'margin: %1$s %2$s %3$s %4$s;',
+					$img_box_top_margin_hover,
+					$img_box_right_margin_hover,
+					$img_box_bottom_margin_hover,
+					$img_box_left_margin_hover
 				),
 			));
 		}
@@ -460,6 +500,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
+		// padding
 		list($title_top_space, $title_right_space, $title_bottom_space, $title_left_space) = $this->get_custom_space($title_space);
 
 		if ('' !== $title_space) {
@@ -475,9 +516,24 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
+		list($title_top_space_hover, $title_right_space_hover, $title_bottom_space_hover, $title_left_space_hover) = $this->get_custom_space($title_space_hover);
+
+		if ('' !== $title_space_hover) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-title:hover',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$title_top_space_hover,
+					$title_right_space_hover,
+					$title_bottom_space_hover,
+					$title_left_space_hover
+				),
+			));
+		}
+
 		list($title_top_margin, $title_right_margin, $title_bottom_margin, $title_left_margin) = $this->get_custom_space($title_margin);
 
-		if ('' !== $title_space) {
+		if ('' !== $title_margin) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-title',
 				'declaration' => sprintf(
@@ -490,16 +546,21 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
+		list($title_top_margin_hover, $title_right_margin_hover, $title_bottom_margin_hover, $title_left_margin_hover) = $this->get_custom_space($title_margin_hover);
 
-		if ('' !== $title_bg_hover) {
+		if ('' !== $title_margin_hover) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-title:hover',
 				'declaration' => sprintf(
-					'background-color: %1$s;',
-					$title_bg_hover
+					'margin: %1$s %2$s %3$s %4$s;',
+					$title_top_margin_hover,
+					$title_right_margin_hover,
+					$title_bottom_margin_hover,
+					$title_left_margin_hover
 				),
 			));
 		}
+
 
 		///////////////////////
 		///// Subtitle ////////

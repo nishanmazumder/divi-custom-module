@@ -198,16 +198,23 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		$button_space = $this->props['nm_button_space'];
 		$button_margin = $this->props['nm_button_space_margin'];
 
-		// Width
+		// Height & Width
 		$img_width = $this->props['nm_img_width'];
 		$content_box_width = $this->props['nm_content_box_width'];
+		$content_box_height = $this->props['nm_content_box_height'];
+
+		//Position
+		$content_box_position_active = $this->props['nm_content_box_overlap'];
+		$content_box_move_top = $this->props['nm_content_box_move_top'];
+
+
 
 		// Image
 		if ('' !== $img_width) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-image img',
 				'declaration' => sprintf(
-					'max-width: %1$s;',
+					'width: %1$s;',
 					$img_width
 				),
 			));
@@ -221,7 +228,9 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
+		///////////////////////
 		///// Content Box /////
+		///////////////////////
 		if ('' !== $content_box_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-content',
@@ -251,7 +260,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		//margin
 		list($content_box_top_margin, $content_box_right_margin, $content_box_bottom_margin, $content_box_left_margin) = $this->get_custom_space($content_box_margin);
 
-		if ('' !== $content_box_space) {
+		if ('' !== $content_box_margin) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-content',
 				'declaration' => sprintf(
@@ -264,6 +273,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
+		// width
 		if ('' !== $content_box_width) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-content',
@@ -279,7 +289,44 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		///// Title  /////
+		// height
+		if ('' !== $content_box_height) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => sprintf(
+					'max-height: %1$s;',
+					$content_box_height
+				),
+			));
+
+			// ET_Builder_Element::set_style($render_slug, array(
+			// 	'selector'    => '%%order_class%% .featured-box-content',
+			// 	'declaration' => 'position: absolute;',
+			// ));
+		}
+
+		// position
+		if ('on' === $content_box_position_active) {
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-content',
+				'declaration' => 'position: absolute; top: 20%;'
+			));
+
+			if ('' !== $content_box_move_top) {
+				ET_Builder_Element::set_style($render_slug, array(
+					'selector'    => '%%order_class%% .featured-box-content',
+					'declaration' => sprintf(
+						'top: %1$s;',
+						$content_box_move_top
+					),
+				));
+			}
+		}
+
+
+		///////////////////////
+		///// Title ///////////
+		///////////////////////
 		if ('' !== $title_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-title',
@@ -341,7 +388,9 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		///// Content /////
+		///////////////////////
+		///// Content /////////
+		///////////////////////
 		if ('' !== $content_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-text',
@@ -392,8 +441,9 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 		}
 
-		///// Button /////
-
+		///////////////////////
+		///// Button /////////
+		///////////////////////
 		if ('' !== $button_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-button',
@@ -482,7 +532,8 @@ class NMDIVI_BLURB extends ET_Builder_Module
 					<img src="%1$s" alt="%2$s" />
 				</div>
 		  	</div>',
-			esc_url($this->props['nm_img']), esc_html($this->props['nm_img_alt_text'])
+			esc_url($this->props['nm_img']),
+			esc_html($this->props['nm_img_alt_text'])
 		);
 	}
 

@@ -22,21 +22,69 @@ trait GET_FIELDS
                 'tab_slug'        => 'advanced'
             ),
             'nm_content_box_width' => array(
-                'label'             => esc_html__('Content box Width', 'nm_divi'),
+                'label'             => esc_html__('Content box width', 'nm_divi'),
                 'type'              => 'range',
                 'toggle_slug'       => 'nm_box',
                 'tab_slug'          => 'advanced',
-                'default'           => '100%',
+                'default'           => 'auto',
+                'default'           => '500px',
+                // 'allowed_units'     => array('%'),
+                'allowed_units'     => array('px'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '500',
+                    'step' => '10'
+                ),
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi')
+            ),
+            'nm_content_box_height' => array(
+                'label'             => esc_html__('Content box height', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'          => 'advanced',
+                'default'           => '400px',
+                'allowed_units'     => array('px'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '400',
+                    'step' => '10'
+                ),
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi')
+            ),
+            'nm_content_box_overlap'  => array(
+                'label'             => esc_html__('Content box overlap', 'nm_divi'),
+                'type'              => 'yes_no_button',
+                'options'           => array(
+                    'off' => esc_html__('Off', 'divi_flash'),
+                    'on'  => esc_html__('On', 'divi_flash')
+                ),
+                'default'           => 'off',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'        => 'advanced'
+            ),
+            'nm_content_box_move_top' => array(
+                'label'             => esc_html__('Move top', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_box',
+                'tab_slug'          => 'advanced',
+                'default'           => '50%',
                 'allowed_units'     => array('%'),
                 'range_settings'    => array(
                     'min'  => '0',
                     'max'  => '100',
                     'step' => '1'
                 ),
-                'responsive'        => true,
-                'mobile_options'    => true,
-                'description'     => esc_html__('', 'nm_divi')
-            )
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi'),
+                'show_if'         => array(
+                    'nm_content_box_overlap'     => 'on'
+                )
+            ),
         ];
 
         $title = array(
@@ -184,7 +232,7 @@ trait GET_FIELDS
 
         $custom_space = [
             'nm_content_box_space' => array(
-                'label'             => esc_html__('Content box padding', 'nm_divi'),
+                'label'             => esc_html__('Content padding', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'wrapper',
@@ -194,7 +242,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_content_box_space_margin' => array(
-                'label'             => esc_html__('Content box margin', 'nm_divi'),
+                'label'             => esc_html__('Content margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'wrapper',
@@ -204,7 +252,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_title_space' => array(
-                'label'             => esc_html__('Title box padding', 'nm_divi'),
+                'label'             => esc_html__('Title padding', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -214,7 +262,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_title_space_margin' => array(
-                'label'             => esc_html__('Title box margin', 'nm_divi'),
+                'label'             => esc_html__('Title margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -224,7 +272,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_content_space' => array(
-                'label'             => esc_html__('Content box padding', 'nm_divi'),
+                'label'             => esc_html__('Content padding', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -234,7 +282,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_content_space_margin' => array(
-                'label'             => esc_html__('Content box margin', 'nm_divi'),
+                'label'             => esc_html__('Content margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -244,7 +292,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_button_space' => array(
-                'label'             => esc_html__('Button box padding', 'nm_divi'),
+                'label'             => esc_html__('Button padding', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',
@@ -254,7 +302,7 @@ trait GET_FIELDS
                 'mobile_options'    => true
             ),
             'nm_button_space_margin' => array(
-                'label'             => esc_html__('Button box margin', 'nm_divi'),
+                'label'             => esc_html__('Button margin', 'nm_divi'),
                 'toggle_slug'       => 'custom_spacing',
                 'tab_slug'          => 'advanced',
                 'sub_toggle'        => 'content',

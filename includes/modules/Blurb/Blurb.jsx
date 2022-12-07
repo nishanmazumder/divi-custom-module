@@ -33,7 +33,7 @@ class NMDIVI_BLURB extends Component {
       },
     ]);
 
-    //padding
+    // Content box padding
     if (props.nm_content_box_space) {
       let content_box_space = props.nm_content_box_space;
       content_box_space = content_box_space.split("|").filter((el) => {
@@ -48,7 +48,7 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // margin
+    // Content box margin
     if (props.nm_content_box_space_margin) {
       let content_box_margin = props.nm_content_box_space_margin;
       content_box_margin = content_box_margin.split("|").filter((el) => {
@@ -63,6 +63,7 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
+    // Content box width
     additionalCss.push([
       {
         selector: "%%order_class%% .featured-box-content",
@@ -70,7 +71,30 @@ class NMDIVI_BLURB extends Component {
       },
     ]);
 
-    // Title BG
+    // Content box height
+    additionalCss.push([
+      {
+        selector: "%%order_class%% .featured-box-content",
+        declaration: `max-height: ${props.nm_content_box_height};`,
+      },
+    ]);
+
+    // Content box position
+    if('on' === props.nm_content_box_overlap){
+      additionalCss.push([
+        {
+          selector : "%%order_class%% .featured-box-content",
+          declaration: `position: absolute; top: 0%;`
+        },
+        {
+          selector : "%%order_class%% .featured-box-content",
+          declaration: `top: ${props.nm_content_box_move_top};`,
+        }
+      ]);
+    }
+
+
+    ////// Title //////
     if ("on|hover" === props.nm_title_bg__hover_enabled) {
       additionalCss.push([
         {
@@ -115,7 +139,8 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // Content
+
+    ///// Content /////
     if ("on|hover" === props.nm_content_bg__hover_enabled) {
       additionalCss.push([
         {
@@ -132,7 +157,7 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // Content Space
+    // Content padding
     if (props.nm_content_space) {
       let content_space = props.nm_content_space;
       content_space = content_space.split("|").filter((el) => {
@@ -162,7 +187,7 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // Image
+    ///// Image /////
     additionalCss.push([
       {
         selector: "%%order_class%% .featured-box-image img",
@@ -174,7 +199,7 @@ class NMDIVI_BLURB extends Component {
       },
     ]);
 
-    // Button BG
+    ///// Button /////
     if ("on|hover" === props.nm_btn_bg__hover_enabled) {
       additionalCss.push([
         {
@@ -220,7 +245,7 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // console.log(props);
+    console.log(props);
 
     return additionalCss;
   }
@@ -268,7 +293,7 @@ class NMDIVI_BLURB extends Component {
     return (
       <div className="featured-box-button">
         <a
-          className={utils.classnames(btn_class) + button_full_width} //featured-box-readmore display-inline-block
+          className={utils.classnames(btn_class) + button_full_width + " featured-box-readmore"} //featured-box-readmore display-inline-block
           href={btn_url}
           target={btn_target}
           rel={utils.linkRel(this.props.button_rel)}

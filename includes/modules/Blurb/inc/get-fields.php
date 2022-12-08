@@ -304,15 +304,14 @@ trait GET_FIELDS
                 'tab_slug'          => 'advanced',
                 'default'           => '50%',
                 'default'           => '100%',
-                // 'allowed_units'     => array('%'),
                 'allowed_units'     => array('%'),
                 'range_settings'    => array(
                     'min'  => '0',
                     'max'  => '100',
                     'step' => '5'
                 ),
-                // 'responsive'        => true,
-                // 'mobile_options'    => true,
+                'responsive'        => true,
+                'mobile_options'    => true,
                 'description'     => esc_html__('', 'nm_divi')
             ),
             // 'nm_content_box_height' => array(
@@ -354,8 +353,8 @@ trait GET_FIELDS
                     'max'  => '100',
                     'step' => '1'
                 ),
-                // 'responsive'        => true,
-                // 'mobile_options'    => true,
+                'responsive'        => true,
+                'mobile_options'    => true,
                 'description'     => esc_html__('', 'nm_divi'),
                 'show_if'         => array(
                     'nm_content_box_overlap'     => 'on'
@@ -374,8 +373,8 @@ trait GET_FIELDS
                     'max'  => '100',
                     'step' => '1'
                 ),
-                // 'responsive'        => true,
-                // 'mobile_options'    => true,
+                'responsive'        => true,
+                'mobile_options'    => true,
                 'description'     => esc_html__('', 'nm_divi'),
                 'show_if'         => array(
                     'nm_content_box_overlap'     => 'on'

@@ -67,6 +67,38 @@ trait GET_FIELDS
             )
         );
 
+        $badge = array(
+            'nm_badge_enable'  => array(
+                'label'             => esc_html__('Badge Enable', 'nm_divi'),
+                'type'              => 'yes_no_button',
+                'options'           => array(
+                    'off' => esc_html__('Off', 'nm_divi'),
+                    'on'  => esc_html__('On', 'nm_divi')
+                ),
+                'default'           => 'off',
+                'toggle_slug'       => 'nm_badge',
+            ),
+            'nm_badge' => array(
+                'label'           => esc_html__('Badge', 'nm_divi'),
+                'type'            => 'text',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_badge',
+                'show_if'         => array(
+                    'nm_badge_enable'     => 'on'
+                )
+            ),
+            'nm_badge_bg' => array(
+                'label'           => esc_html__('Badge Background', 'nm_divi'),
+                'type'            => 'color-alpha',
+                'hover'           => 'tabs',
+                'option_category' => 'basic_option',
+                'description'     => esc_html__('', 'nm_divi'),
+                'toggle_slug'     => 'nm_badge',
+                'tab_slug'        => 'advanced'
+            )
+        );
+
         $title = array(
             'nm_title' => array(
                 'label'           => esc_html__('Title', 'nm_divi'),
@@ -397,6 +429,6 @@ trait GET_FIELDS
         ];
 
         // Return all values
-        return array_merge($image, $title, $subtitle, $content, $button, $content_box, $custom_space);
+        return array_merge($image, $badge, $title, $subtitle, $content, $button, $content_box, $custom_space);
     }
 }

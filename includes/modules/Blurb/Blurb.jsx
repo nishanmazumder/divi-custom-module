@@ -196,18 +196,41 @@ class NMDIVI_BLURB extends Component {
       }
     }
 
-    // {
-    //   selector: "%%order_class%% .featured-box-content",
-    //   declaration: `bottom: ${props.nm_content_box_move_bottom};`,
-    // },
-    // {
-    //   selector: "%%order_class%% .featured-box-content",
-    //   declaration: `left: ${props.nm_content_box_move_left};`,
-    // },
-    // {
-    //   selector: "%%order_class%% .featured-box-content",
-    //   declaration: `right: ${props.nm_content_box_move_right};`,
-    // },
+    ///// Badge //////
+
+    if ("on" === props.nm_badge_enable) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge",
+          declaration: `display: inline-block;`,
+        },
+      ]);
+    }else{
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge",
+          declaration: `display: none;`,
+        },
+      ]);
+    }
+
+    if ("on|hover" === props.nm_badge_bg__hover_enabled) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge",
+          declaration: `background-color: ${props.nm_badge_bg__hover};`,
+        },
+      ]);
+    } else {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge",
+          declaration: `background-color: ${props.nm_badge_bg};`,
+        },
+      ]);
+    }
+
+
 
     ////// Title //////
     if ("on|hover" === props.nm_title_bg__hover_enabled) {
@@ -226,7 +249,7 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-      // Title Padding
+    // Title Padding
 
     if ("on|hover" === props.nm_title_space__hover_enabled) {
       if (props.nm_title_space__hover) {
@@ -508,6 +531,7 @@ class NMDIVI_BLURB extends Component {
 
   render() {
     // const content = this.props.content();
+    const badge = this.props.nm_badge
     const title = this.props.nm_title;
     const subtitle = this.props.nm_sub_title;
     // const content = this.render_content(this.props, "nm_content");
@@ -524,6 +548,7 @@ class NMDIVI_BLURB extends Component {
             </div>
           </div>
           <div className="featured-box-content">
+            <span className="featured-box-badge">{badge}</span>
             <h3 className="featured-box-title">
               <span>{title}</span>
             </h3>

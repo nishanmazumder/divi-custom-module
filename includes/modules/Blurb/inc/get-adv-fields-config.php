@@ -18,6 +18,29 @@ trait GET_ADV_FIELDS_CONFIG
         $advanced_fields['text'] = false;
 
         $advanced_fields['fonts'] = array(
+            'nm_badge'   => array(
+                'label'         => esc_html__('Badge', 'nm_divi'),
+                'toggle_slug'   => 'nm_badge',
+                'tab_slug'        => 'advanced',
+                'line_height' => array(
+                    'default' => '1em',
+                ),
+                'font_size' => array(
+                    'default' => '24px',
+                ),
+                'font-weight' => array(
+                    'default' => 'bold'
+                ),
+                'css'      => array(
+                    'main' => " %%order_class%% .featured-box-badge",
+                    'hover' => "%%order_class%% .featured-box-badge:hover",
+                    'important' => 'all',
+                ),
+                // 'header_level' => array(
+                //     'default' => 'h3',
+                // ),
+            ),
+
             // Title
             'nm_title'   => array(
                 'label'         => esc_html__('Title', 'nm_divi'),
@@ -111,6 +134,19 @@ trait GET_ADV_FIELDS_CONFIG
             'use_alignment'  => true,
         );
 
+        // $advanced_fields['button']['nm_badge'] = array(
+        //     'label' => esc_html__('Badge', 'nm_divi'),
+        //     'toggle_slug'   => 'nm_badge',
+        //     'tab_slug'        => 'advanced',
+        //     'css'            => array(
+        //         'main'      => '%%order_class%% span.featured-box-badge',
+        //         'alignment' => '%%order_class%% span.featured-box-badge',
+        //         'important' => 'all',
+        //     ),
+
+        //     // 'use_alignment'  => true,
+        // );
+
         $advanced_fields['borders'] = array(
             'default'               => array(),
 
@@ -126,6 +162,20 @@ trait GET_ADV_FIELDS_CONFIG
                 // 'label'    => esc_html__('Title Border', 'nm_divi'),
                 'tab_slug'        => 'advanced',
                 'toggle_slug'     => 'nm_box',
+            ),
+
+            'nm_badge'         => array(
+                'css'               => array(
+                    'main'  => array(
+                        'border_radii' => "%%order_class%% .featured-box-badge",
+                        'border_radii_hover' => "%%order_class%% .featured-box-badge:hover .featured-box-badge",
+                        'border_styles' => "%%order_class%% .featured-box-badge",
+                        'border_styles_hover' => "%%order_class%% .featured-box-badge:hover .featured-box-badge",
+                    )
+                ),
+                // 'label'    => esc_html__('Title Border', 'nm_divi'),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_badge',
             ),
 
             'nm_title'         => array(
@@ -244,6 +294,16 @@ trait GET_ADV_FIELDS_CONFIG
                 ),
                 'tab_slug'        => 'advanced',
                 'toggle_slug'     => 'nm_image',
+            ),
+
+            'nm_badge'             => array(
+                'label'    => esc_html__('Badge Box Shadow', 'nm_divi'),
+                'css' => array(
+                    'main' => "%%order_class%% .featured-box-badge",
+                    'hover' => "%%order_class%% .featured-box-badge:hover .featured-box-badge",
+                ),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'nm_badge',
             ),
 
             'nm_title'             => array(

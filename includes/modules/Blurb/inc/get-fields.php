@@ -96,7 +96,71 @@ trait GET_FIELDS
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_badge',
                 'tab_slug'        => 'advanced'
-            )
+            ),
+            'nm_badge_icon_active'  => array(
+                'label'             => esc_html__('Use Icon', 'nm_divi'),
+                'type'              => 'yes_no_button',
+                'options'           => array(
+                    'off' => esc_html__('Off', 'nm_divi'),
+                    'on'  => esc_html__('On', 'nm_divi')
+                ),
+                'default'           => 'off',
+                'tab_slug'            => 'advanced' ,
+                'toggle_slug'       => 'nm_badge',
+            ),
+            'nm_badge_icon' => array(
+				'label'               => esc_html__( 'Icon', 'divi_flash' ),
+				'type'                => 'select_icon',
+                'class'                 => array('et-pb-font-icon'),
+                'default'               => '5',
+				'toggle_slug'         => 'nm_badge',
+                'tab_slug'            => 'advanced' ,
+				'description'         => esc_html__( '', 'nm_divi' ),
+                'show_if'         => array(
+                    'nm_badge_icon_active'     => 'on'
+                )
+            ),
+            'nm_badge_space' => array(
+                'label'             => esc_html__('Badge padding', 'nm_divi'),
+                'toggle_slug'       => 'nm_badge',
+                'tab_slug'          => 'advanced',
+                'type'              => 'custom_margin',
+                'hover'             => 'tabs',
+                'responsive'        => true,
+                'mobile_options'    => true
+            ),
+            'nm_badge_move_top_bottom' => array(
+                'label'             => esc_html__('Move top/bottom', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_badge',
+                'tab_slug'          => 'advanced',
+                'default'           => '45%',
+                'allowed_units'     => array('%'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '100',
+                    'step' => '1'
+                ),
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi'),
+            ),
+            'nm_badge_move_left_right' => array(
+                'label'             => esc_html__('Move left/right', 'nm_divi'),
+                'type'              => 'range',
+                'toggle_slug'       => 'nm_badge',
+                'tab_slug'          => 'advanced',
+                'default'           => '90%',
+                'allowed_units'     => array('%'),
+                'range_settings'    => array(
+                    'min'  => '0',
+                    'max'  => '100',
+                    'step' => '1'
+                ),
+                // 'responsive'        => true,
+                // 'mobile_options'    => true,
+                'description'     => esc_html__('', 'nm_divi'),
+            ),
         );
 
         $title = array(
@@ -119,12 +183,25 @@ trait GET_FIELDS
         );
 
         $subtitle = array(
+            'nm_subtitle_active'  => array(
+                'label'             => esc_html__('Enable Subtitle', 'nm_divi'),
+                'type'              => 'yes_no_button',
+                'options'           => array(
+                    'off' => esc_html__('Off', 'nm_divi'),
+                    'on'  => esc_html__('On', 'nm_divi')
+                ),
+                'default'           => 'off',
+                'toggle_slug'       => 'nm_content',
+            ),
             'nm_sub_title' => array(
                 'label'           => esc_html__('Sub title', 'nm_divi'),
                 'type'            => 'text',
                 'option_category' => 'basic_option',
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_content',
+                'show_if'         => array(
+                    'nm_subtitle_active'     => 'on'
+                )
             ),
             'nm_sub_title_bg' => array(
                 'label'           => esc_html__('Sub title Background', 'nm_divi'),
@@ -133,7 +210,10 @@ trait GET_FIELDS
                 'option_category' => 'basic_option',
                 'description'     => esc_html__('', 'nm_divi'),
                 'toggle_slug'     => 'nm_sub_title',
-                'tab_slug'        => 'advanced'
+                'tab_slug'        => 'advanced',
+                'show_if'         => array(
+                    'nm_subtitle_active'     => 'on'
+                )
             )
         );
 

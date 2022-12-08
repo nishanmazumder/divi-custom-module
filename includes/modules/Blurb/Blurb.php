@@ -63,6 +63,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 					'nm_content' => esc_html__('Content', 'nm_divi'),
 					'nm_image' => esc_html__('Image', 'nm_divi'),
 					'nm_button' => esc_html__('Button', 'nm_divi'),
+					'nm_badge' => esc_html__('Badge', 'nm_divi'),
 					'custom_spacing'    => array(
 						'title'             => esc_html__('Custom Spacing', 'nm_divi'),
 						'tabbed_subtoggles' => true,
@@ -194,60 +195,17 @@ class NMDIVI_BLURB extends ET_Builder_Module
 	// Render Css
 	public function render_css($render_slug)
 	{
-		// Feature Box
-		$content_box_bg = $this->props['nm_content_box_bg'];
 
-		// Image
+		///////////////////////
+		///// Image ///////////
+		///////////////////////
 
-		//Badge
-
-
-		// Title
-
-		// Content
-		$content = $this->props['nm_content'];
-
-		// Align
+		$img_width = $this->props['nm_img_width'];
 		$img_align = $this->props['nm_img_align'];
-
-		// Background
 		$image_bg = $this->props['nm_img_bg'];
-		$badge_bg = $this->props['nm_badge_bg'];
-		$title_bg = $this->props['nm_title_bg'];
-		$subtitle_bg = $this->props['nm_sub_title_bg'];
-		$content_bg = $this->props['nm_content_bg'];
-		$button_bg = $this->props['nm_btn_bg'];
-
-		//Custom space
-		$content_box_space = $this->props['nm_content_box_space'];
-		$content_box_margin = $this->props['nm_content_box_space_margin'];
 		$image_space = $this->props['nm_img_space'];
 		$image_margin = $this->props['nm_img_margin'];
-		$title_space = $this->props['nm_title_space'];
-		$title_margin = $this->props['nm_title_space_margin'];
-		$subtitle_space = $this->props['nm_sub_title_space'];
-		$subtitle_margin = $this->props['nm_sub_title_margin'];
-		$content_space = $this->props['nm_content_space'];
-		$content_margin = $this->props['nm_content_space_margin'];
-		$button_space = $this->props['nm_button_space'];
-		$button_margin = $this->props['nm_button_space_margin'];
 
-		// Height & Width
-		$img_width = $this->props['nm_img_width'];
-		$content_box_width = $this->props['nm_content_box_width'];
-		// $content_box_height = $this->props['nm_content_box_height'];
-
-		//Position
-		$content_box_position_active = $this->props['nm_content_box_overlap'];
-		$content_box_move_top_bottom = $this->props['nm_content_box_move_top_bottom'];
-		$content_box_move_left_right = $this->props['nm_content_box_move_left_right'];
-
-		// Enable/Disable nm_badge_enable
-		$badge_enable = $this->props['nm_content_box_overlap'];
-
-
-
-		// Image
 		if ('' !== $img_width) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-image img',
@@ -360,11 +318,18 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			}
 		}
 
-
-
 		///////////////////////
 		///// Content Box /////
 		///////////////////////
+
+		$content_box_position_active = $this->props['nm_content_box_overlap'];
+		$content_box_width = $this->props['nm_content_box_width'];
+		$content_box_bg = $this->props['nm_content_box_bg'];
+		$content_box_space = $this->props['nm_content_box_space'];
+		$content_box_margin = $this->props['nm_content_box_space_margin'];
+		$content_box_move_top_bottom = $this->props['nm_content_box_move_top_bottom'];
+		$content_box_move_left_right = $this->props['nm_content_box_move_left_right'];
+
 		if ('' !== $content_box_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-content',
@@ -487,15 +452,70 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		///// Badge ///////////
 		///////////////////////
 
+		$badge_enable = $this->props['nm_badge_enable'];
+		$badge_bg = $this->props['nm_badge_bg'];
+		$badge_icon_enable = $this->props['nm_badge_icon_active'];
+		$badge_icon = $this->props['nm_badge_icon'];
+		$badge_space = $this->props['nm_badge_space'];
+		$badge_move_top_bottom = $this->props['nm_badge_move_top_bottom'];
+		$badge_move_left_right = $this->props['nm_badge_move_left_right'];
+
 		if ('on' === $badge_enable) {
+
+			// Badge
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-badge',
-				'declaration' => 'display: inline-block;',
+				'declaration' => 'position: absolute; display: flex; background-color: #E09900; top: 45%; left: 90%;',
 			));
-		}else{
+
+			// Badge Icon
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-badge-icon',
+				'declaration' => 'font-size: 24px;'
+			));
+
+			// Top/Bottom
+			if ('' !== $badge_move_top_bottom) {
+				ET_Builder_Element::set_style($render_slug, array(
+					'selector'    => '%%order_class%% .featured-box-badge',
+					'declaration' => sprintf(
+						'top: %1$s;',
+						$badge_move_top_bottom
+					),
+				));
+			}
+
+
+			// Left/Right
+			if ('' !== $badge_move_left_right) {
+				ET_Builder_Element::set_style($render_slug, array(
+					'selector'    => '%%order_class%% .featured-box-badge',
+					'declaration' => sprintf(
+						'left: %1$s;',
+						$badge_move_left_right
+					),
+				));
+			}
+		} else {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-badge',
 				'declaration' => 'display: none;',
+			));
+		}
+
+		// padding
+		if ('' !== $badge_space) {
+			list($badge_top_space, $badge_right_space, $badge_bottom_space, $badge_left_space) = $this->get_custom_space($badge_space);
+
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-badge',
+				'declaration' => sprintf(
+					'padding: %1$s %2$s %3$s %4$s;',
+					$badge_top_space,
+					$badge_right_space,
+					$badge_bottom_space,
+					$badge_left_space
+				),
 			));
 		}
 
@@ -521,10 +541,25 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			}
 		}
 
+		// Badge Icon
+		// if ('on' !== $badge_icon_enable) {
+
+		// 	ET_Builder_Element::set_style($render_slug, array(
+		// 		'selector'    => '%%order_class%% .featured-box-badge',
+		// 		'declaration' => 'display: flex !important; align-items: center !important;'
+		// 	));
+
+		// }
+
 
 		///////////////////////
 		///// Title ///////////
 		///////////////////////
+
+		$title_bg = $this->props['nm_title_bg'];
+		$title_space = $this->props['nm_title_space'];
+		$title_margin = $this->props['nm_title_space_margin'];
+
 		if ('' !== $title_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-title',
@@ -625,6 +660,18 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		///// Subtitle ////////
 		///////////////////////
 
+		$subtitle_active = $this->props['nm_subtitle_active'];
+		$subtitle_bg = $this->props['nm_sub_title_bg'];
+		$subtitle_space = $this->props['nm_sub_title_space'];
+		$subtitle_margin = $this->props['nm_sub_title_margin'];
+
+		if('on' !== $subtitle_active){
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-subtitle',
+				'declaration' => 'display: none;'
+			));
+		}
+
 		if ('' !== $subtitle_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-subtitle',
@@ -685,6 +732,12 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		///////////////////////
 		///// Content /////////
 		///////////////////////
+
+		$content = $this->props['nm_content'];
+		$content_bg = $this->props['nm_content_bg'];
+		$content_space = $this->props['nm_content_space'];
+		$content_margin = $this->props['nm_content_space_margin'];
+
 		if ('' !== $content) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-text p',
@@ -750,6 +803,11 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		///////////////////////
 		///// Button /////////
 		///////////////////////
+
+		$button_bg = $this->props['nm_btn_bg'];
+		$button_space = $this->props['nm_button_space'];
+		$button_margin = $this->props['nm_button_space_margin'];
+
 		if ('' !== $button_bg) {
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-button',
@@ -856,10 +914,13 @@ class NMDIVI_BLURB extends ET_Builder_Module
 
 	public function nm_render_badge()
 	{
-		return sprintf(
-			'<span class="featured-box-badge">%1$s</span>',
-			esc_html($this->props['nm_badge'])
-		);
+
+		if (isset($this->props['nm_badge_icon_active']) && '' !== $this->props['nm_badge_icon'])
+			return sprintf(
+				'<div class="featured-box-badge">%1$s<span class="et-pb-icon featured-box-badge-icon">%2$s</span></div>',
+				esc_html($this->props['nm_badge']),
+				esc_attr(et_pb_process_font_icon($this->props['nm_badge_icon']))
+			);
 	}
 
 	// Title block

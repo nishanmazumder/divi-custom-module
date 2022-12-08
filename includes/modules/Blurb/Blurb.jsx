@@ -7,30 +7,6 @@ import "./style.css";
 class NMDIVI_BLURB extends Component {
   static slug = "nmdivi_blurb";
 
-  // constructor(props) {
-  //   super(props);
-
-  //   const test_title = props.nm_title
-
-  //   this.state = {
-  //     title: "title"
-  //   }
-
-  //   console.log(this.state.title)
-  //   // console.log(this.state.title)
-
-  //   // let field = this.props.dynamic['nm_content'].render("full");
-
-  //   // check_propst_dynamic = () => {
-  //   //   return field;
-  //   // };
-
-  //   // console.log(field)
-  //   // this.state = {
-  //   //   title_space: {}
-  //   // }
-  // }
-
   static css(props) {
     let additionalCss = [];
 
@@ -202,14 +178,46 @@ class NMDIVI_BLURB extends Component {
       additionalCss.push([
         {
           selector: "%%order_class%% .featured-box-badge",
-          declaration: `display: inline-block;`,
+          declaration: `position: absolute; display: inline-block; background-color: #E09900; top: 45%; left: 90%;`,
         },
+        {
+          selector: "%%order_class%% .featured-box-badge-icon",
+          declaration: `font-size: 24px;`,
+        }
       ]);
-    }else{
+    } else {
       additionalCss.push([
         {
           selector: "%%order_class%% .featured-box-badge",
           declaration: `display: none;`,
+        },
+        {
+          selector: "%%order_class%% .featured-box-badge-icon",
+          declaration: `display: none;`,
+        }
+      ]);
+    }
+
+    // if('off' === props.nm_content_box_overlap){
+    //   additionalCss.push([
+    //     {
+    //       selector: "%%order_class%% .featured-box-badge",
+    //       declaration: `position: absolute; display: inline-block; background-color: #E09900; top: auto; left: auto;`,
+    //     },
+    //   ]);
+    // }
+
+    // Padding
+    if (props.nm_badge_space) {
+      let badge_space = props.nm_badge_space;
+      badge_space = badge_space.split("|").filter((el) => {
+        return el !== "";
+      });
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge",
+          declaration: `padding: ${badge_space[0]} ${badge_space[1]} ${badge_space[2]} ${badge_space[3]};`,
         },
       ]);
     }
@@ -230,6 +238,42 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
+    if (props.nm_badge_move_top_bottom) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge",
+          declaration: `top: ${props.nm_badge_move_top_bottom};`,
+        },
+      ]);
+    }
+
+    if (props.nm_badge_move_left_right) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge",
+          declaration: `left: ${props.nm_badge_move_left_right};`,
+        },
+      ]);
+    }
+
+    if ("on" === props.nm_badge_enable) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge-icon",
+          declaration: `font-size: 24px;`,
+        },
+      ]);
+
+    }
+
+    if("on" === props.nm_content_box_overlap){
+            additionalCss.push([
+          {
+            selector: "%%order_class%% .featured-box-badge",
+            declaration: `display: flex; position: absolute; align-items: center; top: auto; left: auto;`,
+          },
+        ]);
+    }
 
 
     ////// Title //////
@@ -313,9 +357,15 @@ class NMDIVI_BLURB extends Component {
       }
     }
 
-
-
     ////// Subtitle //////
+    if('on' !== props.nm_subtitle_active){
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-subtitle",
+          declaration: `display: none;`,
+        },
+      ]);
+    }
     if ("on|hover" === props.nm_sub_title_bg__hover_enabled) {
       additionalCss.push([
         {
@@ -470,25 +520,7 @@ class NMDIVI_BLURB extends Component {
     return additionalCss;
   }
 
-  // get_space = () => {
-  //   let title_space = this.props.nm_title_space
-
-  //   if('' !== title_space){
-  //     let space_val = title_space.split('|').filter(el => {
-  //       return el !== ''
-  //     })
-  //     space_val.forEach(data => {
-  //       this.setState((val) => {
-  //         return {val : val.data}
-  //       })
-  //     });
-  //     // var filtered = space_val.filter(function (el) {
-  //     //   return el !== '';
-  //     // });
-  //     // return console.log(filtered)
-  //   }
-  // }
-
+  // Render button
   render_button = () => {
     const utils = window.ET_Builder.API.Utils;
     const btn_text = this.props.nm_btn;
@@ -529,9 +561,22 @@ class NMDIVI_BLURB extends Component {
     );
   };
 
+  // Render icon
+  render_icon = () => {
+    const utils = window.ET_Builder.API.Utils;
+    const badge = this.props.nm_badge;
+    let badge_icon = this.props.nm_badge_icon;
+    badge_icon = utils.processFontIcon(badge_icon);
+
+    return (
+      <div className="featured-box-badge">
+        {badge}
+        <span className="et-pb-icon featured-box-badge-icon">{badge_icon}</span>
+      </div>
+    );
+  };
+
   render() {
-    // const content = this.props.content();
-    const badge = this.props.nm_badge
     const title = this.props.nm_title;
     const subtitle = this.props.nm_sub_title;
     // const content = this.render_content(this.props, "nm_content");
@@ -548,7 +593,7 @@ class NMDIVI_BLURB extends Component {
             </div>
           </div>
           <div className="featured-box-content">
-            <span className="featured-box-badge">{badge}</span>
+            {this.render_icon()}
             <h3 className="featured-box-title">
               <span>{title}</span>
             </h3>

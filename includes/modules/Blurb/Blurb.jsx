@@ -198,15 +198,6 @@ class NMDIVI_BLURB extends Component {
       ]);
     }
 
-    // if('off' === props.nm_content_box_overlap){
-    //   additionalCss.push([
-    //     {
-    //       selector: "%%order_class%% .featured-box-badge",
-    //       declaration: `position: absolute; display: inline-block; background-color: #E09900; top: auto; left: auto;`,
-    //     },
-    //   ]);
-    // }
-
     // Padding
     if (props.nm_badge_space) {
       let badge_space = props.nm_badge_space;
@@ -266,14 +257,14 @@ class NMDIVI_BLURB extends Component {
 
     }
 
-    if("on" === props.nm_content_box_overlap){
-            additionalCss.push([
-          {
-            selector: "%%order_class%% .featured-box-badge",
-            declaration: `display: flex; position: absolute; align-items: center; top: auto; left: auto;`,
-          },
-        ]);
-    }
+    // if("on" === props.nm_content_box_overlap){
+    //         additionalCss.push([
+    //       {
+    //         selector: "%%order_class%% .featured-box-badge",
+    //         declaration: `display: flex; position: absolute; align-items: center; top: auto; left: auto;`,
+    //       },
+    //     ]);
+    // }
 
 
     ////// Title //////

@@ -133,7 +133,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			// 	'selector' => '%%order_class%% .featured-box-content span',
 			// ),
 			'nm_badge_css' => array(
-				'label'    => esc_html__('Title', 'nm_divi'),
+				'label'    => esc_html__('Badge', 'nm_divi'),
 				'selector' => '%%order_class%% .featured-box-badge',
 			),
 			'nm_title_css' => array(
@@ -468,10 +468,10 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		if ('on' === $badge_enable) {
 
 			// Badge
-			// ET_Builder_Element::set_style($render_slug, array(
-			// 	'selector'    => '%%order_class%% .featured-box-badge',
-			// 	'declaration' => 'position: absolute; display: flex; background-color: #E09900; top: 45%; left: 90%; align-items: center;',
-			// ));
+			ET_Builder_Element::set_style($render_slug, array(
+				'selector'    => '%%order_class%% .featured-box-badge',
+				'declaration' => 'position: absolute; display: flex; background-color: #E09900; top: 45%; left: 90%; align-items: center;',
+			));
 
 			// Badge Icon
 			if('on' === $badge_icon_enable){

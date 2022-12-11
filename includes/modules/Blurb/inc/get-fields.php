@@ -135,6 +135,9 @@ trait GET_FIELDS
                 // 'responsive'        => true,
                 // 'mobile_options'    => true,
                 'description'     => esc_html__('', 'nm_divi'),
+                'show_if'         => array(
+                    'nm_badge_icon_active'     => 'on'
+                )
             ),
             'nm_badge_space' => array(
                 'label'             => esc_html__('Badge padding', 'nm_divi'),

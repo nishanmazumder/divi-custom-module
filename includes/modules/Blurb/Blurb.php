@@ -132,6 +132,10 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			// 	'label'    => esc_html__('Content Wrapper', 'nm_divi'),
 			// 	'selector' => '%%order_class%% .featured-box-content span',
 			// ),
+			'nm_badge_css' => array(
+				'label'    => esc_html__('Title', 'nm_divi'),
+				'selector' => '%%order_class%% .featured-box-badge',
+			),
 			'nm_title_css' => array(
 				'label'    => esc_html__('Title', 'nm_divi'),
 				'selector' => '%%order_class%% .featured-box-title span',
@@ -464,13 +468,13 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		if ('on' === $badge_enable) {
 
 			// Badge
-			ET_Builder_Element::set_style($render_slug, array(
-				'selector'    => '%%order_class%% .featured-box-badge',
-				'declaration' => 'position: absolute; display: flex; background-color: #E09900; top: 45%; left: 90%; align-items: center;',
-			));
+			// ET_Builder_Element::set_style($render_slug, array(
+			// 	'selector'    => '%%order_class%% .featured-box-badge',
+			// 	'declaration' => 'position: absolute; display: flex; background-color: #E09900; top: 45%; left: 90%; align-items: center;',
+			// ));
 
 			// Badge Icon
-			if($badge_icon_enable){
+			if('on' === $badge_icon_enable){
 				if('' !== $badge_icon && '' !== $badge_icon_size){
 					ET_Builder_Element::set_style($render_slug, array(
 						'selector'    => '%%order_class%% .featured-box-badge-icon',
@@ -480,6 +484,11 @@ class NMDIVI_BLURB extends ET_Builder_Module
 						),
 					));
 				}
+			}else{
+				ET_Builder_Element::set_style($render_slug, array(
+					'selector'    => '%%order_class%% .featured-box-badge-icon',
+					'declaration' => 'display: none;',
+				));
 			}
 
 			// Top/Bottom

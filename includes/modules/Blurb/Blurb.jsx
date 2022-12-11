@@ -29,7 +29,7 @@ class NMDIVI_BLURB extends Component {
 
     // Content box padding
     if (props.nm_content_box_space) {
-      let content_box_space = nm_space_process(props.nm_content_box_space)
+      let content_box_space = nm_space_process(props.nm_content_box_space);
 
       additionalCss.push([
         {
@@ -40,24 +40,29 @@ class NMDIVI_BLURB extends Component {
     }
 
     // Content box margin
-    if (props.nm_content_box_space_margin) {
-      let content_box_margin = nm_space_process(props.nm_content_box_space_margin);
 
+    if (parseFloat(props.nm_content_box_width) > 0) {
+      // Content box width
       additionalCss.push([
         {
           selector: "%%order_class%% .featured-box-content",
-          declaration: `margin: ${content_box_margin[0]} ${content_box_margin[1]} ${content_box_margin[2]} ${content_box_margin[3]} !important;`,
+          declaration: `max-width: ${props.nm_content_box_width}; margin: 0px auto;`,
         },
       ]);
     }
 
-    // Content box width
-    additionalCss.push([
-      {
-        selector: "%%order_class%% .featured-box-content",
-        declaration: `max-width: ${props.nm_content_box_width}; margin: 0px auto !important;`,
-      },
-    ]);
+    if (parseFloat(props.nm_content_box_width) === parseFloat("100%") && "" !== props.nm_content_box_space_margin) {
+      let content_box_margin = nm_space_process(
+        props.nm_content_box_space_margin
+      );
+
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-content",
+          declaration: `margin: ${content_box_margin[0]} ${content_box_margin[1]} ${content_box_margin[2]} ${content_box_margin[3]};`,
+        },
+      ]);
+    }
 
     // Content box height
     // additionalCss.push([
@@ -303,7 +308,9 @@ class NMDIVI_BLURB extends Component {
 
     if ("on|hover" === props.nm_title_space_margin__hover_enabled) {
       if (props.nm_title_space_margin__hover) {
-        let title_margin_hover = nm_space_process(props.nm_title_space_margin__hover);
+        let title_margin_hover = nm_space_process(
+          props.nm_title_space_margin__hover
+        );
         additionalCss.push([
           {
             selector: "%%order_class%% .featured-box-title",

@@ -9,6 +9,15 @@ class NMDIVI_BLURB extends Component {
 
   static css(props) {
     let additionalCss = [];
+    let nm_space_process = (input) => {
+      input = input.split("|").filter((el) => {
+        return el !== "true" && el !== "false";
+      });
+
+      return input.map((data) => {
+        return data.length !== 0 ? data : "0px";
+      });
+    };
 
     ///// Content Box  /////
     additionalCss.push([
@@ -20,10 +29,7 @@ class NMDIVI_BLURB extends Component {
 
     // Content box padding
     if (props.nm_content_box_space) {
-      let content_box_space = props.nm_content_box_space;
-      content_box_space = content_box_space.split("|").filter((el) => {
-        return el !== "";
-      });
+      let content_box_space = nm_space_process(props.nm_content_box_space)
 
       additionalCss.push([
         {
@@ -35,10 +41,7 @@ class NMDIVI_BLURB extends Component {
 
     // Content box margin
     if (props.nm_content_box_space_margin) {
-      let content_box_margin = props.nm_content_box_space_margin;
-      content_box_margin = content_box_margin.split("|").filter((el) => {
-        return el !== "";
-      });
+      let content_box_margin = nm_space_process(props.nm_content_box_space_margin);
 
       additionalCss.push([
         {
@@ -52,7 +55,7 @@ class NMDIVI_BLURB extends Component {
     additionalCss.push([
       {
         selector: "%%order_class%% .featured-box-content",
-        declaration: `max-width: ${props.nm_content_box_width}; margin: 0px auto;`,
+        declaration: `max-width: ${props.nm_content_box_width}; margin: 0px auto !important;`,
       },
     ]);
 
@@ -113,10 +116,7 @@ class NMDIVI_BLURB extends Component {
     // Padding
     if ("on|hover" === props.nm_img_space__hover_enabled) {
       if (props.nm_img_space__hover) {
-        let image_space_hover = props.nm_img_space__hover;
-        image_space_hover = image_space_hover.split("|").filter((el) => {
-          return el !== "";
-        });
+        let image_space_hover = nm_space_process(props.nm_img_space__hover);
 
         additionalCss.push([
           {
@@ -127,10 +127,7 @@ class NMDIVI_BLURB extends Component {
       }
     } else {
       if (props.nm_img_space) {
-        let image_space = props.nm_img_space;
-        image_space = image_space.split("|").filter((el) => {
-          return el !== "";
-        });
+        let image_space = nm_space_process(props.nm_img_space);
 
         additionalCss.push([
           {
@@ -144,10 +141,7 @@ class NMDIVI_BLURB extends Component {
     // margin
     if ("on|hover" === props.nm_img_margin__hover_enabled) {
       if (props.nm_img_margin__hover) {
-        let image_margin_hover = props.nm_img_margin__hover;
-        image_margin_hover = image_margin_hover.split("|").filter((el) => {
-          return el !== "";
-        });
+        let image_margin_hover = nm_space_process(props.nm_img_margin__hover);
 
         additionalCss.push([
           {
@@ -158,10 +152,7 @@ class NMDIVI_BLURB extends Component {
       }
     } else {
       if (props.nm_img_margin) {
-        let image_margin = props.nm_img_margin;
-        image_margin = image_margin.split("|").filter((el) => {
-          return el !== "";
-        });
+        let image_margin = nm_space_process(props.nm_img_margin);
 
         additionalCss.push([
           {
@@ -179,7 +170,7 @@ class NMDIVI_BLURB extends Component {
         {
           selector: "%%order_class%% .featured-box-badge",
           declaration: `display: none;`,
-        }
+        },
       ]);
     }
 
@@ -203,10 +194,7 @@ class NMDIVI_BLURB extends Component {
 
     // Padding
     if (props.nm_badge_space) {
-      let badge_space = props.nm_badge_space;
-      badge_space = badge_space.split("|").filter((el) => {
-        return el !== "";
-      });
+      let badge_space = nm_space_process(props.nm_badge_space);
 
       additionalCss.push([
         {
@@ -289,10 +277,7 @@ class NMDIVI_BLURB extends Component {
 
     if ("on|hover" === props.nm_title_space__hover_enabled) {
       if (props.nm_title_space__hover) {
-        let title_space_hover = props.nm_title_space__hover;
-        title_space_hover = title_space_hover.split("|").filter((el) => {
-          return el !== "";
-        });
+        let title_space_hover = nm_space_process(props.nm_title_space__hover);
 
         additionalCss.push([
           {
@@ -303,10 +288,7 @@ class NMDIVI_BLURB extends Component {
       }
     } else {
       if (props.nm_title_space) {
-        let title_space = props.nm_title_space;
-        title_space = title_space.split("|").filter((el) => {
-          return el !== "";
-        });
+        let title_space = nm_space_process(props.nm_title_space);
 
         additionalCss.push([
           {
@@ -321,11 +303,7 @@ class NMDIVI_BLURB extends Component {
 
     if ("on|hover" === props.nm_title_space_margin__hover_enabled) {
       if (props.nm_title_space_margin__hover) {
-        let title_margin_hover = props.nm_title_space_margin__hover;
-        title_margin_hover = title_margin_hover.split("|").filter((el) => {
-          return el !== "";
-        });
-
+        let title_margin_hover = nm_space_process(props.nm_title_space_margin__hover);
         additionalCss.push([
           {
             selector: "%%order_class%% .featured-box-title",
@@ -335,10 +313,7 @@ class NMDIVI_BLURB extends Component {
       }
     } else {
       if (props.nm_title_space_margin) {
-        let title_margin = props.nm_title_space_margin;
-        title_margin = title_margin.split("|").filter((el) => {
-          return el !== "";
-        });
+        let title_margin = nm_space_process(props.nm_title_space_margin);
 
         additionalCss.push([
           {
@@ -375,10 +350,7 @@ class NMDIVI_BLURB extends Component {
     }
 
     if (props.nm_sub_title_space) {
-      let subtitle_space = props.nm_sub_title_space;
-      subtitle_space = subtitle_space.split("|").filter((el) => {
-        return el !== "";
-      });
+      let subtitle_space = nm_space_process(props.nm_sub_title_space);
 
       additionalCss.push([
         {
@@ -389,10 +361,7 @@ class NMDIVI_BLURB extends Component {
     }
 
     if (props.nm_sub_title_margin) {
-      let subtitle_margin = props.nm_sub_title_margin;
-      subtitle_margin = subtitle_margin.split("|").filter((el) => {
-        return el !== "";
-      });
+      let subtitle_margin = nm_space_process(props.nm_sub_title_margin);
 
       additionalCss.push([
         {
@@ -421,10 +390,7 @@ class NMDIVI_BLURB extends Component {
 
     // Content padding
     if (props.nm_content_space) {
-      let content_space = props.nm_content_space;
-      content_space = content_space.split("|").filter((el) => {
-        return el !== "";
-      });
+      let content_space = nm_space_process(props.nm_content_space);
 
       additionalCss.push([
         {
@@ -436,10 +402,7 @@ class NMDIVI_BLURB extends Component {
 
     // Content Margin
     if (props.nm_content_space_margin) {
-      let content_margin = props.nm_content_space_margin;
-      content_margin = content_margin.split("|").filter((el) => {
-        return el !== "";
-      });
+      let content_margin = nm_space_process(props.nm_content_space_margin);
 
       additionalCss.push([
         {
@@ -480,10 +443,7 @@ class NMDIVI_BLURB extends Component {
 
     // Button Space
     if (props.nm_button_space) {
-      let button_space = props.nm_button_space;
-      button_space = button_space.split("|").filter((el) => {
-        return el !== "";
-      });
+      let button_space = nm_space_process(props.nm_button_space);
 
       additionalCss.push([
         {
@@ -494,10 +454,7 @@ class NMDIVI_BLURB extends Component {
     }
 
     if (props.nm_button_space_margin) {
-      let button_margin = props.nm_button_space_margin;
-      button_margin = button_margin.split("|").filter((el) => {
-        return el !== "";
-      });
+      let button_margin = nm_space_process(props.nm_button_space_margin);
 
       additionalCss.push([
         {
@@ -575,6 +532,7 @@ class NMDIVI_BLURB extends Component {
     const content = this.props.dynamic["nm_content"].render("full");
     const img = this.props.nm_img;
     const img_alt = this.props.nm_img_alt_text;
+    // let content_box_space = this.props.nm_content_box_space;
 
     return (
       <>

@@ -257,7 +257,7 @@ trait GET_ADV_FIELDS_CONFIG
                         'border_styles_hover' => "%%order_class%% .featured-box-button:hover",
                     )
                 ),
-                // 'label'    => esc_html__('Title Border', 'nm_divi'),
+                'label'    => esc_html__('Button Container Border', 'nm_divi'),
                 'tab_slug'        => 'advanced',
                 'toggle_slug'     => 'nm_button',
             ),

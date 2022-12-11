@@ -456,6 +456,7 @@ class NMDIVI_BLURB extends ET_Builder_Module
 		$badge_bg = $this->props['nm_badge_bg'];
 		$badge_icon_enable = $this->props['nm_badge_icon_active'];
 		$badge_icon = $this->props['nm_badge_icon'];
+		$badge_icon_size = $this->props['nm_badge_icon_size'];
 		$badge_space = $this->props['nm_badge_space'];
 		$badge_move_top_bottom = $this->props['nm_badge_move_top_bottom'];
 		$badge_move_left_right = $this->props['nm_badge_move_left_right'];
@@ -469,10 +470,17 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			));
 
 			// Badge Icon
-			ET_Builder_Element::set_style($render_slug, array(
-				'selector'    => '%%order_class%% .featured-box-badge-icon',
-				'declaration' => 'font-size: 18px; margin-left: 5px;'
-			));
+			if($badge_icon_enable){
+				if('' !== $badge_icon && '' !== $badge_icon_size){
+					ET_Builder_Element::set_style($render_slug, array(
+						'selector'    => '%%order_class%% .featured-box-badge-icon',
+						'declaration' => sprintf(
+							'font-size: %1$s; margin-left: 5px;',
+							$badge_icon_size
+						),
+					));
+				}
+			}
 
 			// Top/Bottom
 			if ('' !== $badge_move_top_bottom) {

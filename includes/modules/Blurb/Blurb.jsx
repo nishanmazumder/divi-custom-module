@@ -174,27 +174,30 @@ class NMDIVI_BLURB extends Component {
 
     ///// Badge //////
 
-    if ("on" === props.nm_badge_enable) {
+    if ("on" !== props.nm_badge_enable) {
       additionalCss.push([
         {
           selector: "%%order_class%% .featured-box-badge",
-          declaration: `position: absolute; display: inline-block; background-color: #E09900; top: 45%; left: 90%;`,
-        },
-        {
-          selector: "%%order_class%% .featured-box-badge-icon",
-          declaration: `font-size: 24px;`,
+          declaration: `display: none;`,
         }
       ]);
-    } else {
+    }
+
+    if ("on" !== props.nm_badge_icon_active) {
       additionalCss.push([
-        {
-          selector: "%%order_class%% .featured-box-badge",
-          declaration: `display: none;`,
-        },
         {
           selector: "%%order_class%% .featured-box-badge-icon",
           declaration: `display: none;`,
-        }
+        },
+      ]);
+    }
+
+    if (props.nm_badge_icon_size) {
+      additionalCss.push([
+        {
+          selector: "%%order_class%% .featured-box-badge-icon",
+          declaration: `font-size: ${props.nm_badge_icon_size} !important; margin-left: 5px;`,
+        },
       ]);
     }
 
@@ -254,7 +257,6 @@ class NMDIVI_BLURB extends Component {
           declaration: `font-size: 24px;`,
         },
       ]);
-
     }
 
     // if("on" === props.nm_content_box_overlap){
@@ -265,7 +267,6 @@ class NMDIVI_BLURB extends Component {
     //       },
     //     ]);
     // }
-
 
     ////// Title //////
     if ("on|hover" === props.nm_title_bg__hover_enabled) {
@@ -349,7 +350,7 @@ class NMDIVI_BLURB extends Component {
     }
 
     ////// Subtitle //////
-    if('on' !== props.nm_subtitle_active){
+    if ("on" !== props.nm_subtitle_active) {
       additionalCss.push([
         {
           selector: "%%order_class%% .featured-box-subtitle",

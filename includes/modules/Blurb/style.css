@@ -3,11 +3,16 @@
 }
 
 /* Badge */
-.featured-box-badge{
+.featured-box-badge {
+  position: absolute;
+  display: inline-block;
+  background-color: #e09900;
+  top: 45%;
+  left: 90%;
   align-items: center;
 }
 
-.nmdivi_blurb_1 .featured-box-badge-icon {
+.featured-box-badge-icon {
   margin-left: 5px;
 }
 
@@ -17,7 +22,11 @@
   border-style: solid;
   border-color: #333;
 }
-.featured-box-content *,.featured-box-image *, .featured-box-title *, .featured-box-subtitle *, .featured-box-text * {
+.featured-box-content *,
+.featured-box-image *,
+.featured-box-title *,
+.featured-box-subtitle *,
+.featured-box-text * {
   border-width: 0px;
   border-style: solid;
   border-color: #333;

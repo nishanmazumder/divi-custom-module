@@ -1,6 +1,16 @@
 .featured-box {
   width: 100% !important;
 }
+
+/* Badge */
+.featured-box-badge{
+  align-items: center;
+}
+
+.nmdivi_blurb_1 .featured-box-badge-icon {
+  margin-left: 5px;
+}
+
 /* Border */
 .featured-box > * {
   border-width: 0px;

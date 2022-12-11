@@ -465,13 +465,13 @@ class NMDIVI_BLURB extends ET_Builder_Module
 			// Badge
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-badge',
-				'declaration' => 'position: absolute; display: flex; background-color: #E09900; top: 45%; left: 90%;',
+				'declaration' => 'position: absolute; display: flex; background-color: #E09900; top: 45%; left: 90%; align-items: center;',
 			));
 
 			// Badge Icon
 			ET_Builder_Element::set_style($render_slug, array(
 				'selector'    => '%%order_class%% .featured-box-badge-icon',
-				'declaration' => 'font-size: 24px;'
+				'declaration' => 'font-size: 18px; margin-left: 5px;'
 			));
 
 			// Top/Bottom

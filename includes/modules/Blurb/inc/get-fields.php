@@ -120,6 +120,18 @@ trait GET_FIELDS
                     'nm_badge_icon_active'     => 'on'
                 )
             ),
+            // 'nm_badge_icon_size' => array(
+			// 	'label'               => esc_html__( 'Icon Size', 'divi_flash' ),
+			// 	'type'                => 'select_icon',
+            //     'class'                 => array('et-pb-font-icon'),
+            //     'default'               => '5',
+			// 	'toggle_slug'         => 'nm_badge',
+            //     'tab_slug'            => 'advanced' ,
+			// 	'description'         => esc_html__( '', 'nm_divi' ),
+            //     'show_if'         => array(
+            //         'nm_badge_icon_active'     => 'on'
+            //     )
+            // ),
             'nm_badge_space' => array(
                 'label'             => esc_html__('Badge padding', 'nm_divi'),
                 'toggle_slug'       => 'nm_badge',

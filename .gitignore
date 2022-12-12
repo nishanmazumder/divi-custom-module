@@ -3,6 +3,10 @@
 # dependencies
 /node_modules
 
+#files
+/includes/utils
+/includes/Bak
+
 # testing
 /coverage
 

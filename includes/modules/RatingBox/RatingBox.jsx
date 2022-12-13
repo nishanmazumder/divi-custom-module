@@ -8,6 +8,96 @@ class RatingBox extends Component {
   static css(props) {
     var additionalCss = [];
 
+    // Rating Display type
+    if (
+      typeof props.rating_display_type !== "undefined" &&
+      props.rating_display_type === "inline"
+    ) {
+      additionalCss.push([
+        {
+          selector: `%%order_class%% .df-rating-wrapper`,
+          declaration: `display: flex;`,
+        },
+      ]);
+    }
+
+    // Rating Placement
+    if (
+      props.rating_display_type === "inline" &&
+      props.rating_placement_left_right === "right"
+    ) {
+      additionalCss.push([
+        {
+          selector: `%%order_class%% .df-rating-wrapper`,
+          declaration: `flex-direction: unset; justify-content: flex-start;`,
+        },
+      ]);
+    }
+
+    if (
+      props.rating_display_type === "inline" &&
+      props.rating_placement_left_right === "right"
+    ) {
+      additionalCss.push([
+        {
+          selector: `%%order_class%% .df-rating-icon`,
+          declaration: `order: 2;`,
+        },
+        {
+          selector: `%%order_class%% .df-rating-title`,
+          declaration: `order: 1;`,
+        },
+      ]);
+    }
+
+    if (
+      props.rating_display_type === "block" &&
+      props.rating_placement_up_down === "down"
+    ) {
+      additionalCss.push([
+        {
+          selector: `%%order_class%% .df-rating-wrapper`,
+          declaration: `display: flex; flex-direction: column-reverse;`,
+        },
+      ]);
+    }
+
+    utility.df_process_bg({
+      props: props,
+      key: "rating_box_wrapper_bg",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-box-wrapper",
+    });
+
+    utility.df_process_bg({
+      props: props,
+      key: "rating_box_bg",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-wrapper",
+    });
+
+    utility.df_process_bg({
+      props: props,
+      key: "rating_bg",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-icon",
+    });
+
+    utility.df_process_bg({
+      props: props,
+      key: "rating_title_bg",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-title",
+    });
+
+    utility.df_process_bg({
+      props: props,
+      key: "rating_content_bg",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-description",
+    });
+
+
     console.log(props);
 
     return additionalCss;
@@ -50,46 +140,111 @@ class RatingBox extends Component {
     let icon =
       props.enable_rating === "on" && props.rating_active !== ""
         ? utils.processFontIcon(props.rating_active)
-        : utils.processFontIcon("&#xe033;");
+        : utils.processFontIcon("&#xe031;");
 
     // Set Rating Icon
-    let rating_icon = "";
-
-    // console.log(rating_value_inactive)
+    let rating_icon = [];
+    let rating_active_class = "";
 
     if (rating_scale_type === 5) {
-      rating_icon = Array.apply(null, { length: rating_value_5 }).map(
-        (e, i) => (
-          <span className={"et-pb-icon"} key={i}>
+      for (let i = 1; i <= rating_scale_type; i++) {
+        if (i <= rating_value_5) {
+          rating_active_class = " df-rating-icon-fill";
+        } else if (
+          i === rating_value_5 + 1 &&
+          typeof rating_value_5 !== "undefined" &&
+          rating_value_5 !== "" &&
+          rating_value_5 !== 0
+        ) {
+          rating_active_class = ` df-rating-icon-fill df-fill-${props.rating_value_5.substr(
+            2,
+            1
+          )}`;
+        } else {
+          rating_active_class = " df-rating-icon-empty";
+        }
+        rating_icon.push(
+          <span className={"et-pb-icon" + rating_active_class} key={i}>
             {icon}
           </span>
-        )
-      );
-
+        );
+      }
     } else if (rating_scale_type === 10) {
-      rating_icon = Array.apply(null, { length: rating_value_10 }).map(
-        (e, i) => (
+      for (let i = 1; i <= rating_scale_type; i++) {
+        if (i <= rating_value_10) {
+          rating_active_class = " df-rating-icon-fill";
+        } else if (
+          i === rating_value_10 + 1 &&
+          typeof rating_value_10 !== "undefined" &&
+          rating_value_10 !== "" &&
+          rating_value_10 !== 0
+        ) {
+          rating_active_class = ` df-rating-icon-fill df-fill-${props.rating_value_10.substr(
+            2,
+            1
+          )}`;
+        } else {
+          rating_active_class = " df-rating-icon-empty";
+        }
+        rating_icon.push(
+          <span className={"et-pb-icon" + rating_active_class} key={i}>
+            {icon}
+          </span>
+        );
+      }
+    } else {
+      for (let i = 1; i <= 5; i++) {
+        rating_icon.push(
           <span className={"et-pb-icon"} key={i}>
             {icon}
           </span>
-        )
-      );
-
-
-    } else {
-      Array.apply(null, { length: 5 }).map((e, i) => (
-        <span className={"et-pb-icon"} key={i}>
-          {icon}
-        </span>
-      ));
+        );
+      }
     }
+
+    // Clean
+    // if (rating_scale_type === 5) {
+    //   for (let i = 1; i <= rating_scale_type; i++) {
+    //     if(i <= rating_value_5){
+    //       rating_active_class = " df-rating-icon-fill"
+    //     }else if(i === rating_value_5 + 1 && typeof rating_value_5 !== 'undefined' && rating_value_5 !== "" && rating_value_5 !==0){
+    //       rating_active_class = ` df-rating-icon-fill df-fill-${(props.rating_value_5).substr(2, 1)}`
+    //     }
+    //     else{
+    //       rating_active_class = " df-rating-icon-empty"
+    //     }
+    //     rating_icon.push(<span className={"et-pb-icon" + rating_active_class} key={i}> {icon} </span>)
+    //   }
+    // } else {
+    //   for (let i = 1; i <= 5; i++) {
+    //     rating_icon.push(<span className={"et-pb-icon"} key={i}> {icon} </span>)
+    //   }
+    // }
+
+    // Show rating number/text
+    let ratingNumber =
+      typeof props.enable_rating_number !== "undefined" &&
+      props.enable_rating_number === "on" ? (
+        rating_scale_type === 5 ? (
+          <span>{`( ${props.rating_value_5} / ${rating_scale_type} )`}</span>
+        ) : (
+          <span>{`( ${props.rating_value_10} / ${rating_scale_type} )`}</span>
+        )
+      ) : (
+        ""
+      );
 
     // Get Rating Icon title
     let title =
       props.enable_title === "on" && props.title !== "" ? props.title : "";
 
     // Rating Icon wrapper
-    let iconWrapper = <div className={"df-rating-icon"}>{rating_icon}</div>;
+    let iconWrapper = (
+      <div className={"df-rating-icon"}>
+        {rating_icon}
+        {ratingNumber}
+      </div>
+    );
 
     // Title Wrapper
     let titleWrapper =
@@ -99,6 +254,7 @@ class RatingBox extends Component {
         ""
       );
 
+    // Return Rating Icon wrapper
     return (
       <div className="df-rating-wrapper">
         {iconWrapper}

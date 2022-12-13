@@ -1,7 +1,11 @@
 <?php
+if ( ! class_exists( 'ET_Builder_Element' ) ) {
+	return;
+}
+// require_once ( DIFL_MAIN_DIR . '/includes/utils/df_utls.php');
 
 // Get require files
-if (function_exists('get_all_require_files')) get_rating_box_require_files();
+if (function_exists('get_rating_box_require_files')) get_rating_box_require_files();
 
 class DIFL_RatingBox extends ET_Builder_Module
 {
@@ -88,12 +92,25 @@ class DIFL_RatingBox extends ET_Builder_Module
 
     public function get_custom_css_fields_config()
     {
-        return [];
+
+         {/* <div className="df-rating-box-wrapper">
+                <div className="df-rating-wrapper">
+                    <div className="df-rating-icon">
+                        <span className="et-pb-icon">{rating}</span>
+                    </div>
+                    <div className="df-rating-title">{title}</div>
+                </div>
+                <div className="df-rating-description">{content}</div>
+            </div> */}
+
+        return [
+
+        ];
     }
 
     /**
      *
-     * Render (frontend)
+     * Render
      *
      * @return array
      *
@@ -109,10 +126,10 @@ class DIFL_RatingBox extends ET_Builder_Module
 function get_rating_box_require_files()
 {
     // Get Fields
-    include_once plugin_dir_path(__FILE__) .  'inc/get-fields.php';
+    include_once plugin_dir_path(__FILE__) .  '/inc/get-fields.php';
 
     // Get Advanced fields configuration
-    include_once plugin_dir_path(__FILE__) .  'inc/get-adv-fields-config.php';
+    include_once plugin_dir_path(__FILE__) .  '/inc/get-adv-fields-config.php';
 }
 
 new DIFL_RatingBox;

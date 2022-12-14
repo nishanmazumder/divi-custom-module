@@ -16,7 +16,7 @@ trait GET_RATING_ADV_FIELDS_CONFIG
 
         // Disable text field
         $advanced_fields['text'] = false;
-        $advanced_fields['filters'] = false;
+        // $advanced_fields['filters'] = false;
 
         $advanced_fields['fonts'] = [
 
@@ -172,7 +172,7 @@ trait GET_RATING_ADV_FIELDS_CONFIG
             ),
 
             // 'nm_img'             => array(
-            //     'label'    => esc_html__('Image Shadow', 'nm_divi'),
+            //     'label'    => esc_html__('Image Shadow', 'divi_flash'),
             //     'css' => array(
             //         'main' => "%%order_class%% .featured-box-image img",
             //         'hover' => "%%order_class%% .featured-box-image:hover img",
@@ -182,12 +182,22 @@ trait GET_RATING_ADV_FIELDS_CONFIG
             // ),
         );
 
+        $advanced_fields['filters'] = array(
+            'child_filters_target' => array(
+                'label'    => esc_html__('Filter', 'divi_flash'),
+                'tab_slug'        => 'advanced',
+                'toggle_slug'     => 'filter',
+                'css' => array(
+                    'main' => '%%order_class%% .df-rating-box-wrapper',
+                    'hover' => '%%order_class%% .df-rating-box-wrapper:hover .df-rating-box-wrapper'
+                ),
+            ),
+        );
+
         $advanced_fields['margin_padding'] = array(
             'css'   => array(
                 'important' => 'all'
             )
         );
-
-        return $advanced_fields;
     }
 }

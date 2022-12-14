@@ -62,9 +62,9 @@ trait GET_ALL_FIELDS
                 'type'              => 'range',
                 'default'           => '5',
                 'range_settings'    => array(
-                    'min'  => '0',
+                    'min'  => '1',
                     'max'  => '5',
-                    'step' => '1'
+                    'step' => '0.5'
                 ),
                 'toggle_slug'     => 'rating',
                 'show_if'         => array(
@@ -77,9 +77,9 @@ trait GET_ALL_FIELDS
                 'type'              => 'range',
                 'default'           => '10',
                 'range_settings'    => array(
-                    'min'  => '0',
+                    'min'  => '1',
                     'max'  => '10',
-                    'step' => '1'
+                    'step' => '0.5'
                 ),
                 'toggle_slug'     => 'rating',
                 'show_if'         => array(
@@ -91,14 +91,30 @@ trait GET_ALL_FIELDS
                 'description'     => esc_html__('Choose Rating Display Type', 'divi_flash'),
                 'type'            => 'select',
                 'options'         => array(
-                    'off' => esc_html__('Block', 'divi_flash'),
-                    'on'  => esc_html__('Inline', 'divi_flash'),
+                    'block' => esc_html__('Block', 'divi_flash'),
+                    'inline'  => esc_html__('Inline', 'divi_flash'),
                 ),
                 'option_category' => 'basic_option',
                 'toggle_slug'     => 'rating',
             ),
 
-            'rating_placement' => array(
+            'rating_placement_up_down' => array(
+                'label'           => esc_html__('Rating Placement', 'divi_flash'),
+                'description'     => esc_html__('Choose Rating Alignment', 'divi_flash'),
+                'type'            => 'select',
+                'options'         => array(
+                    'up' => esc_html__('Up', 'divi_flash'),
+                    'down'  => esc_html__('Down', 'divi_flash'),
+                ),
+                'default'           => 'up',
+                'option_category' => 'basic_option',
+                'toggle_slug'     => 'rating',
+                'show_if'         => array(
+                    'rating_display_type'     => 'block'
+                )
+            ),
+
+            'rating_placement_left_right' => array(
                 'label'           => esc_html__('Rating Placement', 'divi_flash'),
                 'description'     => esc_html__('Choose Rating Alignment', 'divi_flash'),
                 'type'            => 'select',
@@ -106,8 +122,12 @@ trait GET_ALL_FIELDS
                     'left' => esc_html__('Left', 'divi_flash'),
                     'right'  => esc_html__('Right', 'divi_flash'),
                 ),
+                'default'           => 'left',
                 'option_category' => 'basic_option',
                 'toggle_slug'     => 'rating',
+                'show_if'         => array(
+                    'rating_display_type'     => 'inline'
+                )
             ),
 
             'enable_rating_number'  => array(
@@ -145,6 +165,7 @@ trait GET_ALL_FIELDS
                     'enable_title'     => 'on'
                 )
             ),
+
         ];
 
         $content = [
@@ -170,6 +191,43 @@ trait GET_ALL_FIELDS
                 )
             ),
         ];
+
+        $rating_box_wrapper_bg = $this->df_add_bg_field(array(
+            'label'                 => 'Rating Box Wrapper Background',
+            'key'                   => 'rating_box_wrapper_bg',
+            'toggle_slug'           => 'design_rating_box',
+            'tab_slug'              => 'advanced'
+        ));
+
+        $rating_box_bg = $this->df_add_bg_field(array(
+            'label'                 => 'Rating Box Background',
+            'key'                   => 'rating_box_bg',
+            'toggle_slug'           => 'design_rating',
+            'tab_slug'              => 'advanced'
+        ));
+
+        $rating_bg = $this->df_add_bg_field(array(
+            'label'                 => 'Rating Background',
+            'key'                   => 'rating_bg',
+            'toggle_slug'           => 'design_rating',
+            'tab_slug'              => 'advanced'
+        ));
+
+        $rating_title_bg = $this->df_add_bg_field(array(
+            'label'                 => 'Rating Title Background',
+            'key'                   => 'rating_title_bg',
+            'toggle_slug'           => 'design_title',
+            'tab_slug'              => 'advanced'
+        ));
+
+        $rating_content_bg = $this->df_add_bg_field(array(
+            'label'                 => 'Rating Content Background',
+            'key'                   => 'rating_content_bg',
+            'toggle_slug'           => 'design_content',
+            'tab_slug'              => 'advanced'
+        ));
+
+
 
         $designs = [
             'rating_active_color' => array(
@@ -226,17 +284,14 @@ trait GET_ALL_FIELDS
                 'tab_slug'          => 'advanced',
             ),
 
-            'rating_alignment' => array(
-                'label'           => esc_html__('Rating Alignment', 'divi_flash'),
-                'description'     => esc_html__('Set Rating Alignment.', 'divi_flash'),
-                'type'            => 'align',
-                'option_category' => 'basic_option',
-                'tab_slug'        => 'advanced',
-                'toggle_slug'     => 'setting_rating',
-            ),
+            // 'rating_alignment' => array(
+            //     'label'           => esc_html__('Rating Alignment', 'divi_flash'),
+            //     'description'     => esc_html__('Set Rating Alignment.', 'divi_flash'),
+            //     'type'            => 'align',
+            //     'option_category' => 'basic_option',
+            //     'tab_slug'        => 'advanced',
+            //     'toggle_slug'     => 'setting_rating',
+            // ),
         ];
-
-        // Return all values
-        return array_merge($rating, $title, $content, $designs);
     }
 }

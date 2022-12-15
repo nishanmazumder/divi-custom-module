@@ -21,7 +21,7 @@ class RatingBox extends Component {
       ]);
     }
 
-    // Rating Placement
+    // Rating Placement Left/Right
     if (
       props.rating_display_type === "inline" &&
       props.rating_placement_left_right === "right"
@@ -29,27 +29,23 @@ class RatingBox extends Component {
       additionalCss.push([
         {
           selector: `%%order_class%% .df-rating-wrapper`,
-          declaration: `flex-direction: unset; justify-content: flex-start;`,
+          declaration: `flex-direction: row-reverse; justify-content: center;`,
         },
-      ]);
-    }
-
-    if (
-      props.rating_display_type === "inline" &&
-      props.rating_placement_left_right === "right"
-    ) {
-      additionalCss.push([
         {
           selector: `%%order_class%% .df-rating-icon`,
-          declaration: `order: 2;`,
+          declaration: `display: flex; align-items: center;`,
         },
+      ]);
+    }else{
+      additionalCss.push([
         {
-          selector: `%%order_class%% .df-rating-title`,
-          declaration: `order: 1;`,
-        },
+          selector: `%%order_class%% .df-rating-wrapper`,
+          declaration: `justify-content: center;`,
+        }
       ]);
     }
 
+    // Rating Placement Up/down
     if (
       props.rating_display_type === "block" &&
       props.rating_placement_up_down === "down"
@@ -62,6 +58,7 @@ class RatingBox extends Component {
       ]);
     }
 
+    //  Rating box wrapper background
     utility.df_process_bg({
       props: props,
       key: "rating_box_wrapper_bg",
@@ -69,6 +66,7 @@ class RatingBox extends Component {
       selector: "%%order_class%% .df-rating-box-wrapper",
     });
 
+    //  Rating icon wrapper background
     utility.df_process_bg({
       props: props,
       key: "rating_box_bg",
@@ -76,6 +74,7 @@ class RatingBox extends Component {
       selector: "%%order_class%% .df-rating-wrapper",
     });
 
+    //  Rating icon background
     utility.df_process_bg({
       props: props,
       key: "rating_bg",
@@ -83,6 +82,7 @@ class RatingBox extends Component {
       selector: "%%order_class%% .df-rating-icon",
     });
 
+    //  Title background
     utility.df_process_bg({
       props: props,
       key: "rating_title_bg",
@@ -90,6 +90,7 @@ class RatingBox extends Component {
       selector: "%%order_class%% .df-rating-title",
     });
 
+    //  Content background
     utility.df_process_bg({
       props: props,
       key: "rating_content_bg",
@@ -97,24 +98,7 @@ class RatingBox extends Component {
       selector: "%%order_class%% .df-rating-content",
     });
 
-    // utility.process_color({
-    //   'props'             : props,
-    //   'key'               : 'rating_inactive_color',
-    //   'additionalCss'     : additionalCss,
-    //   'selector'          : '%%order_class%% .df-rating-icon .et-pb-icon',
-    //   'type'              : 'color',
-    //   'important'         : false,
-    // });
-
-    // utility.process_color({
-    //   'props'             : props,
-    //   'key'               : 'rating_active_color',
-    //   'additionalCss'     : additionalCss,
-    //   'selector'          : '%%order_class%% .df-rating-icon span.df-rating-icon-fill:before',
-    //   'type'              : 'color',
-    //   'important'         : false,
-    // });
-
+    // Rating inactive color
     utility.process_color({
       props: props,
       key: "rating_color_inactive",
@@ -124,6 +108,7 @@ class RatingBox extends Component {
       important: false,
     });
 
+    // Rating active color
     utility.process_color({
       props: props,
       key: "rating_color",
@@ -132,6 +117,136 @@ class RatingBox extends Component {
         "%%order_class%% span.df-rating-icon-fill::before, %%order_class%% span.df-rating-icon-fill",
       type: "color",
       important: true,
+    });
+
+    // Rating Icon (+ before) Size
+    utility.process_range_value({
+      props: props,
+      key: "rating_size",
+      additionalCss: additionalCss,
+      selector:
+        "%%order_class%% .df-rating-icon span.et-pb-icon, %%order_class%% span.df-rating-icon-fill::before",
+      type: "font-size",
+      important: true,
+    });
+
+    // Rating Icon align
+    utility.df_process_string_attr({
+      props: props,
+      key: "rating_align",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-icon",
+      type: "text-align",
+      default_value: "center",
+    });
+
+    // Rating icon spacing
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_space",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-icon .et-pb-icon",
+      type: "margin",
+      important: false,
+    });
+
+    // Rating number spacing
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_number_space",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-number",
+      type: "padding",
+      important: false,
+    });
+
+    ////////////////////
+    // Custom Spacing //
+    ///////////////////
+
+    // Rating Box wrapper
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_wrapper_margin",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-box-wrapper",
+      type: "margin",
+    });
+
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_wrapper_padding",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-box-wrapper",
+      type: "padding",
+    });
+
+    // Rating wrapper
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_margin",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-wrapper",
+      type: "margin",
+    });
+
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_padding",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-wrapper",
+      type: "padding",
+    });
+
+    // Rating Icon
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_icon_margin",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-icon",
+      type: "margin",
+    });
+
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_icon_padding",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-icon",
+      type: "padding",
+    });
+
+    // Title wrapper
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_title_margin",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-title",
+      type: "margin",
+    });
+
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_title_padding",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-title",
+      type: "padding",
+    });
+
+    // Content wrapper
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_content_margin",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-content",
+      type: "margin",
+    });
+
+    utility.process_margin_padding({
+      props: props,
+      key: "rating_box_content_padding",
+      additionalCss: additionalCss,
+      selector: "%%order_class%% .df-rating-content",
+      type: "padding",
     });
 
     // if (props.enable_rating_number === "on") {
@@ -164,12 +279,19 @@ class RatingBox extends Component {
     let rating_scale_type =
       props.rating_scale_type !== "" ? parseInt(props.rating_scale_type) : 5;
 
-    // Rating Value - active
+    // Rating Value (Array) (get float)
     let rating_value_5 =
-      props.rating_value_5 !== "" ? parseInt(props.rating_value_5) : 5;
+      typeof props.rating_value_5 !== "undefined" && props.rating_value_5 !== ""
+        ? props.rating_value_5.split(".")
+        : 5;
 
     let rating_value_10 =
-      props.rating_value_10 !== "" ? parseInt(props.rating_value_10) : 10;
+      typeof props.rating_value_10 !== "undefined" &&
+      props.rating_value_10 !== ""
+        ? props.rating_value_10.split(".")
+        : 10;
+
+    // console.log(typeof rating_scale_type)
 
     // rating_scale_type === 5
     //   ? (rating_value = rating_value)
@@ -204,15 +326,12 @@ class RatingBox extends Component {
         if (i <= rating_value_5) {
           rating_active_class = " df-rating-icon-fill";
         } else if (
-          i === rating_value_5 + 1 &&
-          typeof rating_value_5 !== "undefined" &&
-          rating_value_5 !== "" &&
-          rating_value_5 !== 0
+          i === rating_value_5[0] + 1 &&
+          typeof rating_value_5[1] !== "undefined" &&
+          rating_value_5[1] !== "" &&
+          rating_value_5[1] !== 0
         ) {
-          rating_active_class = ` df-rating-icon-fill df-fill-${props.rating_value_5.substr(
-            2,
-            1
-          )}`;
+          rating_active_class = ` df-rating-icon-fill df-fill-${rating_value_5[1]}`;
         } else {
           rating_active_class = " df-rating-icon-empty";
         }
@@ -227,15 +346,12 @@ class RatingBox extends Component {
         if (i <= rating_value_10) {
           rating_active_class = " df-rating-icon-fill";
         } else if (
-          i === rating_value_10 + 1 &&
-          typeof rating_value_10 !== "undefined" &&
-          rating_value_10 !== "" &&
-          rating_value_10 !== 0
+          i === rating_value_10[0] + 1 &&
+          typeof rating_value_10[1] !== "undefined" &&
+          rating_value_10[1] !== "" &&
+          rating_value_10[1] !== 0
         ) {
-          rating_active_class = ` df-rating-icon-fill df-fill-${props.rating_value_10.substr(
-            2,
-            1
-          )}`;
+          rating_active_class = ` df-rating-icon-fill df-fill-${rating_value_10[1]}`;
         } else {
           rating_active_class = " df-rating-icon-empty";
         }
@@ -246,7 +362,7 @@ class RatingBox extends Component {
         );
       }
     } else {
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= rating_scale_type; i++) {
         rating_icon.push(
           <span className={"et-pb-icon"} key={i}>
             {icon}
@@ -261,11 +377,17 @@ class RatingBox extends Component {
       props.enable_rating_number === "on" ? (
         rating_scale_type === 5 ? (
           <span className="df-rating-number">{`( ${
-            props.rating_value_5 !== "" ? props.rating_value_5 : 5
+            typeof props.rating_value_5 !== "undefined" &&
+            props.rating_value_5 !== ""
+              ? props.rating_value_5
+              : 0
           } / ${rating_scale_type} )`}</span>
         ) : (
           <span className="df-rating-number">{`( ${
-            props.rating_value_10 !== "" ? props.rating_value_10 : 10
+            typeof props.rating_value_10 !== "undefined" &&
+            props.rating_value_10 !== ""
+              ? props.rating_value_10
+              : 0
           } / ${rating_scale_type} )`}</span>
         )
       ) : (

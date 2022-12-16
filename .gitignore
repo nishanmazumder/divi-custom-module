@@ -6,6 +6,7 @@
 #files
 /includes/utils
 /includes/Bak
+/scripts
 
 # testing
 /coverage

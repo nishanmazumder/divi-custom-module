@@ -1,0 +1,78 @@
+/* Icon */
+.df-rating-icon span{
+    font-size: 20px;
+}
+
+span.df-rating-icon-fill {
+    display: inline-block;
+    position: relative;
+    font-style: normal;
+    cursor: default;
+}
+
+.df-rating-icon span.df-rating-icon-fill::before {
+    content: "\e033";
+    display: block;
+    font-size: 20px;
+    font-family: inherit;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.df-rating-icon span.df-fill-1::before{ width: 10% !important; }
+.df-rating-icon span.df-fill-2::before{ width: 20% !important; }
+.df-rating-icon span.df-fill-3::before{ width: 30% !important; }
+.df-rating-icon span.df-fill-4::before{ width: 40% !important; }
+.df-rating-icon span.df-fill-5::before{ width: 50% !important; }
+.df-rating-icon span.df-fill-6::before{ width: 60% !important; }
+.df-rating-icon span.df-fill-7::before{ width: 70% !important; }
+.df-rating-icon span.df-fill-8::before{ width: 80% !important; }
+.df-rating-icon span.df-fill-9::before{ width: 90% !important; }
+
+/* Rating number */
+.df-rating-number{
+    color: #000;
+}
+
+/* Border */
+.df-rating-box-wrapper * {
+  border-width: 0px;
+  border-style: solid;
+  border-color: #333;
+}
+
+/* Title & Content */
+.df-rating-title, .df-rating-content{
+    text-align: center;
+}
+.df-rating-content p{
+    font-style: inherit;
+    padding-left: 0px;
+}
+
+
+/* inactive Color */
+/* .df-rating-icon span.df-rating-icon-fill:before {
+    content: "\e033";
+    display: block;
+    font-size: 24px;
+    font-family: inherit;
+    position: absolute;
+    overflow: hidden;
+    top: -2px;
+    left: -2px;
+} */
+
+/* .df-rating-icon span.df-rating-icon-fill:before {
+    content: " ";
+    display: block;
+    font-size: 20px;
+    font-family: inherit;
+    position: absolute;
+    overflow: hidden;
+    top: -4px;
+    left: -3px;
+} */
+

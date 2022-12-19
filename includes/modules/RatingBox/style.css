@@ -5,6 +5,7 @@
 
 .df-rating-icon span{
     font-size: 20px;
+    color: #E02B20;
 }
 
 span.df-rating-icon-fill {
@@ -23,6 +24,8 @@ span.df-rating-icon-fill {
     overflow: hidden;
     top: 0;
     left: 0;
+    transition: .7s;
+    color: #E02B20;
 }
 
 .df-rating-icon span.df-fill-1::before{ width: 10% !important; }
@@ -55,6 +58,7 @@ span.df-rating-icon-fill {
 .df-rating-content p{
     font-style: inherit;
     padding-left: 0px;
+    padding-bottom: 0px;
 }
 
 /* .df-icon-init::before{
